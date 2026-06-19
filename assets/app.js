@@ -38,7 +38,7 @@ function buildShell(){
   const header=document.createElement('header');
   header.className='header';
   header.innerHTML=
-    '<a class="header-logo" href="index.html" style="text-decoration:none">VM.guide</a>'+
+    '<a class="header-logo" href="index.html" style="text-decoration:none">vm.guide</a>'+
     '<span class="header-title">Ventilação Mecânica · Indutores · Sedoanalgesia</span>'+
     '<div class="header-actions">'+
       '<button class="btn-search" onclick="openSearch()">Buscar <kbd>⌘K</kbd></button>'+

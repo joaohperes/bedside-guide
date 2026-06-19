@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDRA — VM Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="sdra">
+<main class="main">
+<section class="section" id="sdra">
+  <h1 class="section-title">SDRA — Ventilação Protetora (LTVV) <a class="share-link" href="#sdra" onclick="copyLink(event,'#sdra')">🔗</a></h1>
+  <p class="section-subtitle">Low Tidal Volume Ventilation — evidência de redução de mortalidade em múltiplos RCTs</p>
+  <div class="callout blue"><strong>Evidência (UpToDate — ARDS ventilator management):</strong><br>
+    • ARDSnet ARMA trial (N=861): mortalidade 31% (VC 6 mL/kg) vs 40% (VC 12 mL/kg); mais dias sem VM (12 vs 10 dias).<br>
+    • Meta-análise de 6 RCTs (1.297 pacs.): LTVV reduziu mortalidade em 28 dias (27,4 vs 37%; RR 0,74, IC95% 0,61–0,88).<br>
+    • Análise retrospectiva de 9 trials (3.562 pacs.): entre todas as variáveis (VC, PEEP, Pplat, DP), a <strong>driving pressure foi a que melhor predisse sobrevida</strong> em SDRA.<br>
+    • UpToDate 2026: enquanto alguns experts definem meta de DP &lt;20 cmH₂O, "dados sugerem que &lt;15 cmH₂O pode ter maior benefício".</div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Parâmetro</th><th>Meta</th><th>Ajuste se fora da meta</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Modo</strong></td><td>AC-VC (preferido)</td><td>AC-PC aceitável se VC estável e consistente com LTVV</td></tr>
+      <tr><td><strong>VC</strong></td><td><span class="td-ok">6 mL/kg PBW inicial</span></td><td>Se Pplat >30: ↓ 1 mL/kg a cada ≥30 min até mín. 4 mL/kg</td></tr>
+      <tr><td><strong>Pplat</strong></td><td><span class="td-bad">≤ 30 cmH₂O</span></td><td>Reduzir VC. Se já em 4 mL/kg e Pplat >30: ↑ FR para compensar</td></tr>
+      <tr><td><strong>Driving Pressure</strong></td><td><span class="td-bad">&lt; 15 cmH₂O</span></td><td>Reduzir VC ou ↑ PEEP. Evitar PEEP alto em pulmão pouco recrutável.</td></tr>
+      <tr><td><strong>PEEP</strong></td><td>Tabela ARDSnet</td><td>Titular por FiO₂/SpO₂. Monitorar PA e FC durante titulação. Efeito pleno leva horas.</td></tr>
+      <tr><td><strong>FiO₂</strong></td><td>100% → desmamar</td><td>Meta SpO₂ 88–95% / PaO₂ 55–80 mmHg. Desmamar em 30–60 min.</td></tr>
+      <tr><td><strong>FR</strong></td><td>14–22 irpm (até 35)</td><td>↑ FR para compensar ↓ VC e manter VM adequada</td></tr>
+      <tr><td><strong>pH alvo</strong></td><td>≥ 7,25</td><td>Se pH &lt;7,25: ↑ FR até 35 irpm ou NaHCO₃. Se pH ≤7,20: corrigir com NaHCO₃.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Protocolo ARDSnet — sequência prática <span class="src">[UpToDate — ARDS ventilator management, Table 3; FCCS Tab. 5-9]</span></h3>
+  <div class="step-list">
+    <div class="step-item teal"><div class="s-label"><span>Passo 1</span><span>PBW</span></div><div class="s-body">Calcular PBW pela altura (não pelo peso real). Usar calculadora neste guia.</div></div>
+    <div class="step-item teal"><div class="s-label"><span>Passo 2</span><span>VC inicial</span></div><div class="s-body">Iniciar AC-VC em 8 mL/kg PBW. Reduzir 1 mL/kg a cada ≥30 min até atingir 6 mL/kg (protocolo original ARDSnet).</div></div>
+    <div class="step-item teal"><div class="s-label"><span>Passo 3</span><span>FR</span></div><div class="s-body">Ajustar FR para manter ventilação-minuto basal (≤35 irpm). Target pH, não PaCO₂.</div></div>
+    <div class="step-item teal"><div class="s-label"><span>Passo 4</span><span>Pplat</span></div><div class="s-body">Medir Pplat com pausa inspiratória de pelo menos 0,5 s (FCCS: "usually 1 second"). Se >30: ↓VC 1 mL/kg até mín. 4 mL/kg ou pH 7,15.</div></div>
+    <div class="step-item teal"><div class="s-label"><span>Passo 5</span><span>DP</span></div><div class="s-body">Calcular DP = Pplat − PEEP. Meta &lt;15 cmH₂O. Se elevada com Pplat ≤30: considerar ↑ PEEP (se recrutável) ou ↓ VC.</div></div>
+    <div class="step-item teal"><div class="s-label"><span>Passo 6</span><span>PEEP / FiO₂</span></div><div class="s-body">Iniciar PEEP 5 cmH₂O e FiO₂ 1,0. Desmamar FiO₂ em 30–60 min usando tabela ARDSnet. Monitorar PA e FC durante titulação de PEEP.</div></div>
+    <div class="step-item teal"><div class="s-label"><span>Passo 7</span><span>Gasometria</span></div><div class="s-body">Gasometria arterial em 30–60 min. Reavaliação em cada ajuste de VC ou FR.</div></div>
+  </div>
+  <div class="callout amber"><strong>Reconhecimento subótimo de SDRA:</strong> Estudo multicêntrico 2016 (3.022 pacs.): SDRA reconhecida pelos médicos em apenas 60% das vezes; &lt;2/3 receberam VC ≤8 mL/kg PBW. Estudo 2021 (2.500 pacs.): apenas 31,4% receberam ventilação protetora (Pplat &lt;30 cmH₂O + VC &lt;6,5 mL/kg PBW). Desenvolver protocolos institucionais melhora a adesão. <span class="src">[UpToDate — ARDS ventilator management]</span></div>
+</section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

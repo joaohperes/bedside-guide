@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabelas rápidas — VM Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="tabelas">
+<main class="main">
+<section class="section" id="tabelas">
+  <h1 class="section-title">Tabelas Rápidas <a class="share-link" href="#tabelas" onclick="copyLink(event,'#tabelas')">🔗</a></h1>
+  <p class="section-subtitle">Consulta de plantão — situação vs estratégia</p>
+  <h3>VM por situação clínica</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Situação</th><th>Modo</th><th>VC</th><th>FR</th><th>PEEP</th><th>Nota chave</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IOT padrão</strong></td><td>AC-VC</td><td>6–8 mL/kg PBW</td><td>12–16</td><td>5</td><td>FiO₂ 100% → desmamar em 30 min para SpO₂ 90–96%</td></tr>
+      <tr><td><strong>SDRA leve-moderada</strong></td><td>AC-VC</td><td>6 mL/kg PBW</td><td>14–22</td><td>ARDSnet</td><td>Pplat ≤30, DP &lt;15, SpO₂ 88–95%</td></tr>
+      <tr><td><strong>SDRA grave refratária</strong></td><td>AC-VC ± BNM</td><td>4–6 mL/kg PBW</td><td>Até 35</td><td>10–20</td><td>Prona (único com benefício de mortalidade). Avaliar ECMO.</td></tr>
+      <tr><td><strong>DPOC agudizado</strong></td><td>AC-VC</td><td>6–8 mL/kg PBW</td><td>10–14</td><td>5–10 (ajustar)</td><td>Fluxo 60–100 L/min. PEEP ≤80% PEEPi. SpO₂ 88–92%.</td></tr>
+      <tr><td><strong>Asma grave</strong></td><td>AC-VC</td><td>6 mL/kg PBW</td><td>8–12</td><td>Mínimo</td><td>Pplat &lt;30, PEEPi &lt;10. Hipercapnia permissiva pH >7,15. Sedação profunda.</td></tr>
+      <tr><td><strong>TCE / ↑PIC</strong></td><td>AC-VC</td><td>6–8 mL/kg PBW</td><td>14–16</td><td>5</td><td>Normoventilação (PaCO₂ 35–40). Evitar hipercapnia. SpO₂ ≥95%.</td></tr>
+      <tr><td><strong>ICC / EAP</strong></td><td>AC-VC ou PSV</td><td>6–8 mL/kg PBW</td><td>12–16</td><td>8–10</td><td>PEEP alto = ↓ pós-carga do VE.</td></tr>
+      <tr><td><strong>Desmame</strong></td><td>PSV</td><td>Meta 6–8 mL/kg</td><td>Espontânea</td><td>Titulado</td><td>Drive presente, RASS ≥ −2, SAT + SBT diários. IRRS &lt;105.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Indutor por cenário clínico</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Cenário</th><th>1ª escolha</th><th>Dose</th><th>Alternativa</th><th>Evitar</th></tr></thead>
+    <tbody>
+      <tr><td>Geral / estável</td><td class="td-ok">Etomidato</td><td class="td-mono">0,3 mg/kg</td><td>Propofol 1,5–2 mg/kg</td><td>—</td></tr>
+      <tr><td>Choque</td><td class="td-ok">Etomidato</td><td class="td-mono">0,15 mg/kg</td><td>Cetamina 1 mg/kg</td><td>Propofol, midazolam em dose plena</td></tr>
+      <tr><td>TCE + hipotensão</td><td class="td-ok">Etomidato</td><td class="td-mono">0,15–0,3 mg/kg</td><td>Cetamina 1 mg/kg</td><td>Propofol se instável</td></tr>
+      <tr><td>TCE + HAS grave (PAM >120)</td><td class="td-ok">Etomidato</td><td class="td-mono">0,3 mg/kg</td><td>Propofol 1 mg/kg</td><td>Cetamina (↑PA)</td></tr>
+      <tr><td>Broncoespasmo grave</td><td class="td-ok">Cetamina</td><td class="td-mono">1–2 mg/kg</td><td>Propofol 1,5 mg/kg (se estável)</td><td>Etomidato (↑ resistência)</td></tr>
+      <tr><td>Status epiléptico</td><td class="td-ok">Propofol</td><td class="td-mono">1–2 mg/kg lento</td><td>Etomidato 0,3 mg/kg</td><td>Cetamina (estimulante SNC)</td></tr>
+      <tr><td>Cardiopata / DAC</td><td class="td-ok">Etomidato</td><td class="td-mono">0,3 mg/kg</td><td>Propofol reduzido</td><td>+ Fentanil 3 mcg/kg IV lento pré-IOT</td></tr>
+      <tr><td>Sepse com choque</td><td class="td-ok">Etomidato</td><td class="td-mono">0,15 mg/kg</td><td>Cetamina 1 mg/kg</td><td>HC 100 mg IV se choque refratário + DVA</td></tr>
+    </tbody>
+  </table></div>
+  <div class="divider"></div>
+  <p style="font-size:11px;color:var(--text3);line-height:1.6">
+    <strong>Fontes:</strong> UpToDate (literatura revisada fev 2026): Mechanical ventilation of adults in the ED; Overview of initiating invasive MV in adults in the ICU; Modes of mechanical ventilation; ARDS: Ventilator management strategies for adults; Invasive MV in acute respiratory failure complicating COPD; Invasive MV in adults with acute exacerbations of asthma; Permissive hypercapnia during MV in adults; Clinical and physiologic complications of MV: Overview; Patient-ventilator dyssynchrony; Weaning from invasive mechanical ventilation; Intracranial hypertension management; MV in TBI; Induction agents for RSI in adults for emergency medicine and critical care (atualizado Mar 2026); Sedative-analgesia in ventilated adults (atualizado Set 2025).<br>
+    FCCS 7ª edição — Hamill ME, Hertel KA, Perez-Fernandez J.<br>
+    Brain Trauma Foundation Guidelines 2023. Yang &amp; Tobin NEJM 1991. Volta et al. meta-análise 2016. ACURASYS trial. PHOENIX trial 2023.<br>
+    Hospital Regional do Oeste — Guia educacional interno. Não substitui julgamento clínico individualizado.
+  </p>
+</section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

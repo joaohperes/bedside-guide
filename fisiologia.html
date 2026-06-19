@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fisiologia da VM — VM Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="fisiologia">
+<main class="main">
+<section class="section" id="fisiologia">
+  <h1 class="section-title">Fisiologia da VM com Pressão Positiva <a class="share-link" href="#fisiologia" onclick="copyLink(event,'#fisiologia')">🔗</a></h1>
+  <p class="section-subtitle">Ciclo ventilatório, mecânica pulmonar e efeitos hemodinâmicos</p>
+  <h3>O ciclo ventilatório — Trigger, Target, Cycle <span class="src">[UpToDate — Modes of MV, Table 1]</span></h3>
+  <p class="prose">Todo ciclo respiratório tem três momentos que definem como o ventilador interage com o paciente:</p>
+  <div class="card-grid col3">
+    <div class="concept-card teal"><div class="label">Trigger</div><div class="value">Inicia a inspiração</div><div class="desc">Tempo programado (FR) ou esforço do paciente. Flow-triggering: 2 L/min. Pressure-triggering: −1 a −2 cmH₂O.</div></div>
+    <div class="concept-card purple"><div class="label">Target</div><div class="value">Controlado durante insuflação</div><div class="desc">Pressão fixa (PC) → fluxo e volume variam. Volume/Fluxo fixo (VC) → pressão varia conforme mecânica.</div></div>
+    <div class="concept-card amber"><div class="label">Cycle</div><div class="value">Encerra a inspiração</div><div class="desc">Volume atingido (VC). Tempo inspiratório (PC). Queda do fluxo a 25% do pico (PSV).</div></div>
+  </div>
+  <div class="callout teal"><strong>VC vs PC:</strong> Em volume-controlado você garante o VC — mas se a complacência cair, a pressão sobe. Em pressão-controlada você garante a pressão — mas se a mecânica piorar, o VC cai silenciosamente. Em VC monitore Pplat e DP; em PC monitore VC e ventilação-minuto. <span class="src">[UpToDate — Overview initiating IMV ICU]</span></div>
+  <div class="divider"></div>
+  <h3>Mecânica pulmonar — parâmetros essenciais <span class="src">[FCCS Cap. 5 + UpToDate — Overview IMV ICU]</span></h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Parâmetro</th><th>Definição</th><th>Meta / Alerta</th><th>Causa de elevação</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pplat</strong><br><small>Pausa insp. ≥ 0,5 s</small></td><td>Pressão estática — reflete apenas complacência. Melhor estimativa da pressão alveolar pico.</td><td><span class="td-bad">≤ 30 cmH₂O</span><br>Se >30: reduzir VC</td><td>↓ Complacência: SDRA, edema, pneumotórax, obesidade</td></tr>
+      <tr><td><strong>ΔP Ppico−Pplat</strong></td><td>Componente resistivo. Se ↑ com Pplat normal → problema de via aérea.</td><td><span class="td-warn">↑ com Pplat normal = resistência</span></td><td>Broncoespasmo, secreção, tubo dobrado, DPOC</td></tr>
+      <tr><td><strong>Driving Pressure (DP)</strong><br><span class="td-mono">DP = Pplat − PEEP</span></td><td>Pressão transpulmonar durante insuflação. Equivale a VT / complacência do sistema resp.</td><td><span class="td-bad">&lt; 15 cmH₂O</span><br>Melhor preditor de VILI</td><td>↓ Complacência ou ↑ VC sem ajuste de PEEP</td></tr>
+      <tr><td><strong>Auto-PEEP (PEEPi)</strong></td><td>PEEP intrínseco por esvaziamento pulmonar incompleto. Diagnosticado na curva fluxo-tempo (fluxo expiratório não retorna a zero).</td><td>Meta: PEEPi &lt; 10 cmH₂O<br>Medir com pausa expiratória</td><td>Obstrução (DPOC, asma), FR alta, I:E inadequado</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout red"><strong>Ppico ↑ + Pplat normal</strong> → problema de RESISTÊNCIA (broncoespasmo, secreção, tubo dobrado, auto-PEEP). Conduta: aspirar, broncodilatador, verificar circuito.<br><br><strong>Ppico ↑ + Pplat ↑</strong> → problema de COMPLACÊNCIA (SDRA, pneumotórax, edema, hiperinsuflação). Conduta: reduzir VC, excluir pneumotórax, revisar PEEP. <span class="src">[UpToDate — MV adultos PS; FCCS Cap. 5]</span></div>
+  <div class="divider"></div>
+  <h3>Efeitos hemodinâmicos da VM com pressão positiva <span class="src">[UpToDate — Complications MV Overview]</span></h3>
+  <div class="card-grid col2">
+    <div class="concept-card coral"><div class="label">Efeitos potencialmente deletérios</div><div class="desc">↓ Retorno venoso → compressão das veias cavas → ↓ DC<br><br>↑ RVP com PEEP alto → ↑ pós-carga do VD → disfunção ventricular direita<br><br>PVC e PAOP falsamente elevadas — corrigir: verdadeira PVC = PVC medida − ½ PEEP (complacência normal) ou ¼ PEEP (complacência reduzida)</div></div>
+    <div class="concept-card teal"><div class="label">Efeito benéfico (ICC / EAP)</div><div class="desc">Em ICC: pressão intratorácica positiva → ↓ pós-carga do VE e ↓ retorno venoso → melhora do débito em corações insuficientes.<br><br>Isso explica por que PEEP alto pode paradoxalmente melhorar a hemodinâmica no edema agudo de pulmão.</div></div>
+  </div>
+  <div class="callout amber"><strong>Hipotensão pós-IOT</strong> é frequente e multifatorial: sedação + ↓ retorno venoso + hipovolemia relativa. Antes de escalar DVA: verificar PEEP, FR, e realizar reposição volêmica cautelosa. Em DPOC/Asma: desconectar circuito por 30–60 s para excluir auto-PEEP como causa. <span class="src">[UpToDate — MV adults ED; DPOC UpToDate]</span></div>
+</section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

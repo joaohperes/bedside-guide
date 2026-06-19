@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz — VM Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="quiz">
+<main class="main">
+<section class="section" id="quiz">
+  <h1 class="section-title">Caso Clínico Interativo <a class="share-link" href="#quiz" onclick="copyLink(event,'#quiz')">🔗</a></h1>
+  <p class="section-subtitle">Quiz de múltipla escolha — ventilação mecânica e farmacologia</p>
+
+  <div class="quiz-box" id="quiz-container">
+    <!-- Score screen -->
+    <div class="quiz-score" id="quiz-score">
+      <div class="score-num" id="score-num">0/5</div>
+      <div class="score-label">Questões corretas</div>
+      <div style="margin-top:20px">
+        <button class="quiz-btn primary" onclick="restartQuiz()">Reiniciar quiz</button>
+      </div>
+    </div>
+    <!-- Question screen -->
+    <div id="quiz-question-screen">
+      <div class="quiz-case" id="quiz-case"></div>
+      <div class="quiz-question" id="quiz-question"></div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+      <div class="quiz-nav">
+        <button class="quiz-btn primary" id="quiz-next-btn" onclick="nextQuestion()" style="display:none">Próxima questão →</button>
+        <span class="quiz-progress" id="quiz-progress"></span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

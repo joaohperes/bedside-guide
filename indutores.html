@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indutores RSI — VM Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="indutores">
+<main class="main">
+<section class="section" id="indutores">
+  <h1 class="section-title">Indutores para RSI <a class="share-link" href="#indutores" onclick="copyLink(event,'#indutores')">🔗</a></h1>
+  <p class="section-subtitle">Perfil farmacológico completo e algoritmo de escolha por cenário clínico — baseado em UpToDate RSI Induction Agents (Mar 2026) e FCCS</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Propriedade</th><th>Etomidato</th><th>Cetamina</th><th>Propofol</th><th>Midazolam</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dose RSI padrão</strong></td><td class="td-mono">0,3 mg/kg IV</td><td class="td-mono">1–2 mg/kg IV</td><td class="td-mono">1,5–3 mg/kg IV</td><td class="td-mono">0,2–0,3 mg/kg IV</td></tr>
+      <tr><td><strong>Dose no choque</strong></td><td class="td-ok td-mono">0,15 mg/kg IV</td><td class="td-ok td-mono">1 mg/kg IV</td><td class="td-bad">Evitar — risco de colapso</td><td class="td-warn td-mono">0,1–0,15 mg/kg (2ª linha)</td></tr>
+      <tr><td><strong>Onset</strong></td><td>15–45 s</td><td>45–60 s</td><td>15–45 s</td><td class="td-bad">30–60 s (lento)</td></tr>
+      <tr><td><strong>Duração</strong></td><td>3–12 min</td><td>10–20 min</td><td>5–10 min</td><td>15–30 min</td></tr>
+      <tr><td><strong>Hemodinâmica</strong></td><td class="td-ok">NEUTRO — melhor da classe para instáveis</td><td class="td-warn">↑ PA e ↑ FC (↑ output simpático)</td><td class="td-bad">↓ PA (~10 mmHg típico; mais em instáveis)</td><td class="td-bad">↓ PA dose-dependente</td></tr>
+      <tr><td><strong>Broncoespasmo</strong></td><td class="td-warn">Leve ↑ resistência — cautela em asma</td><td class="td-ok">Broncodilatador (↑ catecolaminas)</td><td class="td-ok">Broncodilatador</td><td>Neutro</td></tr>
+      <tr><td><strong>PIC / SNC</strong></td><td class="td-ok">Neutro para PIC. Preserva PPC.</td><td class="td-warn">Evidência de elevação de PIC é fraca. Revisão de 11 estudos: sem evidência de prejuízo neurológico. Razoável no TCE + hipotensão.*</td><td class="td-ok">↓ PIC (se hemodin. estável)</td><td class="td-bad">↓ PA pode ↓ PPC. Onset lento.</td></tr>
+      <tr><td><strong>Anticonvulsivante</strong></td><td>Não. Mioclonia pós-etomidato ≠ convulsão.</td><td class="td-bad">Não — efeito estimulante. Evitar em status.</td><td class="td-ok">Sim — preferência em status epiléptico.</td><td class="td-ok">Sim — anticonvulsivante, onset mais lento</td></tr>
+      <tr><td><strong>Caveat principal</strong></td><td class="td-warn">Supressão adrenal reversível 12–24h (1 dose em sepse = aceitável)**</td><td>Evitar se PAM >120 mmHg ou sinais de herniação</td><td class="td-bad">↓ MAP em 43% dos críticos (INTUBE study). PRIS em infusão prolongada.</td><td class="td-bad">Subdosado frequentemente. Taquifilaxia.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="prose" style="font-size:12.5px;color:var(--text3)">* UpToDate: "A systematic review of 11 studies found no evidence to justify restrictions on ketamine use for RSI in the setting of elevated ICP." Evitar cetamina se hipertensão arterial grave (PAM >120) ou sinais de herniação. <br>** UpToDate: etomidato em dose única "is an acceptable induction agent for patients with severe sepsis." Hidrocortisona 100 mg IV apenas se choque refratório a fluido E vasopressor.</p>
+  <h3>Algoritmo de escolha por cenário <span class="src">[UpToDate — RSI Induction Agents; FCCS Tab. 2-2]</span></h3>
+  <div class="scenario-list">
+    <div class="scenario-item"><div class="s-ctx">Geral / estável</div><div class="s-first"><strong>Etomidato 0,3 mg/kg</strong></div><div class="s-note">Alternativa: Propofol 1,5–2 mg/kg se hemodin. estável. Padrão na maioria dos serviços de urgência.</div></div>
+    <div class="scenario-item"><div class="s-ctx">Choque / instabilidade hemodinâmica</div><div class="s-first"><strong>Etomidato 0,15 mg/kg</strong></div><div class="s-note">Alternativa: Cetamina 1 mg/kg. Ressuc. pré-IOT obrigatória. Ambos causam ↓ PA em choque grave — dose reduzida em 25–50%.</div></div>
+    <div class="scenario-item"><div class="s-ctx">TCE + hipotensão (PAM normal ou baixa)</div><div class="s-first"><strong>Etomidato 0,15–0,3 mg/kg</strong></div><div class="s-note">Cetamina 1 mg/kg é alternativa razoável (evidência de segurança neurológica). Manter PPC. Hipotensão é mais deletéria que ↑PIC leve.</div></div>
+    <div class="scenario-item"><div class="s-ctx">TCE + HAS grave (PAM &gt; 120)</div><div class="s-first"><strong>Etomidato 0,3 mg/kg</strong></div><div class="s-note">UpToDate: "If significant hypertension [MAP >120] is present, etomidate is strongly preferable to ketamine." Alternativa: Propofol se hemodin. permite.</div></div>
+    <div class="scenario-item"><div class="s-ctx">Broncoespasmo grave (Asma / DPOC)</div><div class="s-first"><strong>Cetamina 1–2 mg/kg</strong></div><div class="s-note">UpToDate: "we suggest induction with ketamine or propofol" em estável; "ketamine or etomidate" em instável. Ambas são broncodilatadoras.</div></div>
+    <div class="scenario-item"><div class="s-ctx">Status epiléptico</div><div class="s-first"><strong>Propofol 1–2 mg/kg</strong></div><div class="s-note">UpToDate: "we suggest propofol or etomidate for induction of RSI in patients with status epilepticus." Evitar cetamina. Propofol: infundir em 30–45 s.</div></div>
+    <div class="scenario-item"><div class="s-ctx">Cardiopata / DAC / dissecção aórtica</div><div class="s-first"><strong>Etomidato 0,3 mg/kg</strong></div><div class="s-note">UpToDate: "We suggest etomidate for induction of the patient with significant cardiovascular disease." Adicionar Fentanil 3 mcg/kg IV lento como pré-tratamento.</div></div>
+    <div class="scenario-item"><div class="s-ctx">Sepse com choque refratário</div><div class="s-first"><strong>Etomidato 0,15 mg/kg</strong></div><div class="s-note">UpToDate: "suggest low-dose IV etomidate (0.15 mg/kg) or, alternatively, IV ketamine (1 mg/kg)." Se choque refratário a fluido + DVA: Hidrocortisona 100 mg IV.</div></div>
+  </div>
+</section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

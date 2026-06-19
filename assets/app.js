@@ -41,9 +41,8 @@ function buildShell(){
     '<a class="header-logo" href="index.html" style="text-decoration:none">VM.guide</a>'+
     '<span class="header-title">Ventilação Mecânica · Indutores · Sedoanalgesia</span>'+
     '<div class="header-actions">'+
-      '<button class="btn-search" onclick="openSearch()">🔍 Buscar <kbd>⌘K</kbd></button>'+
-      '<button class="btn-plantao" id="btnPlantao" onclick="togglePlantao()">⚡ Plantão</button>'+
-      '<span class="header-tag">HRO / TRR · UpToDate 2026</span>'+
+      '<button class="btn-search" onclick="openSearch()">Buscar <kbd>⌘K</kbd></button>'+
+      '<button class="btn-plantao" id="btnPlantao" onclick="togglePlantao()">Plantão</button>'+
       '<button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>'+
     '</div>';
 
@@ -84,8 +83,8 @@ function buildShell(){
 function setPlantaoBtn(on){
   const btn=document.getElementById('btnPlantao');
   if(!btn)return;
-  if(on){btn.textContent='✕ Sair do Plantão';btn.classList.add('active');}
-  else{btn.textContent='⚡ Plantão';btn.classList.remove('active');}
+  if(on){btn.textContent='Sair do Plantão';btn.classList.add('active');}
+  else{btn.textContent='Plantão';btn.classList.remove('active');}
 }
 function togglePlantao(){
   const on=document.body.classList.toggle('plantao-mode');

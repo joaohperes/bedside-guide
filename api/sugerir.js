@@ -11,6 +11,8 @@ const MODEL = 'claude-sonnet-4-6';
 
 const SYSTEM_PROMPT = `Você é um assistente de apoio à decisão clínica em ventilação mecânica, dirigido a um(a) médico(a) plantonista de UTI/emergência. Você NÃO substitui o julgamento clínico — você organiza o raciocínio e oferece sugestões para o profissional considerar.
 
+Esta é uma DISCUSSÃO CONTÍNUA sobre um mesmo paciente. As mensagens anteriores são o histórico do caso: leve em conta tudo que já foi informado (parâmetros, quadro clínico, condutas discutidas) ao responder cada nova mensagem. Não repita o que já foi dito; construa sobre o histórico.
+
 Base de conhecimento: UpToDate 2026, FCCS, ARDSnet/Berlin, PROSEVA, diretrizes de VM protetora. Use PBW (peso predito pela altura) para volume corrente, nunca peso real.
 
 REGRAS ABSOLUTAS:
@@ -20,22 +22,19 @@ REGRAS ABSOLUTAS:
 - Doses e parâmetros devem vir com a faixa e a fonte/lógica.
 - Seja conciso e acionável — é um plantão.
 
-FORMATO DA RESPOSTA (markdown, exatamente estas seções):
-
-## Resumo do caso
-(1-2 frases sintetizando o paciente e o problema ventilatório central)
-
-## Raciocínio
-(passo a passo: o que os dados indicam, qual o problema fisiopatológico, o que priorizar)
-
-## Sugestão de conduta
-(parâmetros concretos sugeridos, em bullets — modo, VC em mL/kg PBW e mL absolutos se a altura/sexo permitirem o cálculo, PEEP, FiO₂, FR, metas. Cada item com a lógica/fonte entre parênteses)
-
-## Reavaliar / cuidados
-(o que medir/checar em seguida, sinais de alarme, e o que NÃO fazer)
-
-## Dados faltantes
-(lista do que seria necessário para refinar a conduta; "nenhum" se completo)`;
+FORMATO:
+- Na PRIMEIRA avaliação do caso (quando o plantonista apresenta o paciente), responda com as seções em markdown:
+  ## Resumo do caso
+  (1-2 frases sintetizando o paciente e o problema ventilatório central)
+  ## Raciocínio
+  (passo a passo: o que os dados indicam, qual o problema fisiopatológico, o que priorizar)
+  ## Sugestão de conduta
+  (parâmetros concretos em bullets — modo, VC em mL/kg PBW e mL absolutos se altura/sexo permitirem, PEEP, FiO₂, FR, metas. Cada item com a lógica/fonte entre parênteses)
+  ## Reavaliar / cuidados
+  (o que medir/checar em seguida, sinais de alarme, e o que NÃO fazer)
+  ## Dados faltantes
+  (o que falta para refinar; "nenhum" se completo)
+- Em PERGUNTAS DE ACOMPANHAMENTO (turnos seguintes), responda de forma direta e focada na pergunta, sem repetir todas as seções. Use markdown com bullets/negrito quando ajudar. Se a nova informação muda a conduta, diga claramente o que muda.`;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -50,13 +49,40 @@ export default async function handler(req, res) {
     return;
   }
 
-  const anamnese = req.body && typeof req.body.anamnese === 'string' ? req.body.anamnese.trim() : '';
-  if (!anamnese) {
+  // Aceita a conversa completa do caso (turnos user/assistant alternados).
+  // Compatível com o formato antigo (apenas {anamnese}) como 1º turno.
+  let messages = req.body && Array.isArray(req.body.messages) ? req.body.messages : null;
+  if (!messages && req.body && typeof req.body.anamnese === 'string') {
+    messages = [{ role: 'user', content: req.body.anamnese }];
+  }
+
+  // Validação e sanitização das mensagens
+  if (!messages || messages.length === 0) {
     res.status(400).json({ error: 'Cole os dados do paciente antes de enviar.' });
     return;
   }
-  if (anamnese.length > 12000) {
-    res.status(400).json({ error: 'Texto muito longo (máx. ~12000 caracteres).' });
+  if (messages.length > 60) {
+    res.status(400).json({ error: 'Conversa muito longa. Inicie um novo caso.' });
+    return;
+  }
+  let total = 0;
+  const clean = [];
+  for (const m of messages) {
+    if (!m || (m.role !== 'user' && m.role !== 'assistant') || typeof m.content !== 'string') {
+      res.status(400).json({ error: 'Formato de conversa inválido.' });
+      return;
+    }
+    const content = m.content.trim();
+    if (!content) continue;
+    total += content.length;
+    clean.push({ role: m.role, content });
+  }
+  if (clean.length === 0 || clean[clean.length - 1].role !== 'user') {
+    res.status(400).json({ error: 'Envie uma mensagem do plantonista.' });
+    return;
+  }
+  if (total > 40000) {
+    res.status(400).json({ error: 'Conversa muito longa (limite de tamanho). Inicie um novo caso.' });
     return;
   }
 
@@ -74,14 +100,7 @@ export default async function handler(req, res) {
       model: MODEL,
       max_tokens: 2048,
       system: SYSTEM_PROMPT,
-      messages: [
-        {
-          role: 'user',
-          content:
-            'Dados do paciente (cole feito pelo plantonista; pode conter abreviações e ruído):\n\n' +
-            anamnese,
-        },
-      ],
+      messages: clean,
     });
 
     const texto = response.content

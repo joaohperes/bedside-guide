@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quadrantes SvcO₂ × Δ pCO₂ — Hemo Guide</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-module="hemo" data-page="quadrantes">
+<main class="main">
+  <p class="section-title">Quadrantes SvcO₂ × Δ pCO₂</p>
+  <p class="section-sub">Os 4 quadrantes para interpretar a hipoperfusão tecidual</p>
+  
+
+  <div class="card">
+    <div class="card-title purple">Mapa visual dos quadrantes</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:8px;">Eixo X = SvcO₂ (extração de O₂) · Eixo Y = Δ pCO₂ (fluxo tecidual). A posição no plano define o mecanismo dominante.</p>
+
+    <div class="quad-plane">
+      <div class="qp-y-axis">
+        <div class="qp-axis-end">↑ alto</div>
+        <div class="qp-axis-name">Δ pCO₂</div>
+        <div class="qp-axis-end">↓ baixo</div>
+      </div>
+
+      <div class="qp-cell tl">
+        <div class="qp-box red">
+          <span class="qp-tag red">Q4 — baixo débito</span>
+          <div class="qp-title">Choque confirmado</div>
+          <div class="qp-criteria">SvcO₂ &lt; 70% · Δ pCO₂ ≥ 6</div>
+          <div class="qp-desc">Ambos alterados: oferta inadequada <strong>e</strong> fluxo insuficiente. Maior urgência clínica.</div>
+          <div class="qp-action">Identificar mecanismo (POCUS): hipovolemia → volume · disfunção VE → inotrópico · vasoplegia → vasopressor.</div>
+        </div>
+      </div>
+
+      <div class="qp-cell tr">
+        <div class="qp-box coral">
+          <span class="qp-tag coral">Q3 — falsa segurança</span>
+          <div class="qp-title">Cenário mais traiçoeiro</div>
+          <div class="qp-criteria">SvcO₂ ≥ 70% · Δ pCO₂ ≥ 6</div>
+          <div class="qp-desc">SvcO₂ aparentemente "ok" mas o Δ pCO₂ revela fluxo tecidual ruim. Sepse hiperdinâmica, hipóxia citopática, foco não controlado.</div>
+          <div class="qp-action">Não se tranquilizar com SvcO₂. Reavaliar lactato, ECO. Otimizar vasopressor; dobutamina se disfunção VE.</div>
+        </div>
+      </div>
+
+      <div class="qp-cell bl">
+        <div class="qp-box amber">
+          <span class="qp-tag amber">Q2 — oferta</span>
+          <div class="qp-title">Problema na oferta de O₂</div>
+          <div class="qp-criteria">SvcO₂ &lt; 70% · Δ pCO₂ &lt; 6</div>
+          <div class="qp-desc">Tecidos extraindo mais O₂ que o normal, mas fluxo mantido. O DO₂ está inadequado, não o fluxo.</div>
+          <div class="qp-action">Investigar tríade da oferta: Hb (transfusão se &lt; 7–8) · SaO₂ (otimizar O₂) · DC (eco / inotrópico).</div>
+        </div>
+      </div>
+
+      <div class="qp-cell br">
+        <div class="qp-box green">
+          <span class="qp-tag green">Q1 — adequado</span>
+          <div class="qp-title">Ressuscitação adequada</div>
+          <div class="qp-criteria">SvcO₂ ≥ 70% · Δ pCO₂ &lt; 6</div>
+          <div class="qp-desc">Oferta preservada e fluxo tecidual adequado. Os dois parâmetros excluem hipoperfusão global.</div>
+          <div class="qp-action">Manter monitoramento. Lactato seriado, PAM, diurese, enchimento capilar a cada 2–4 h.</div>
+        </div>
+      </div>
+
+      <div class="qp-x-axis">
+        <span>← baixa</span>
+        <span class="qp-axis-name">SvcO₂</span>
+        <span>alta →</span>
+      </div>
+    </div>
+
+    <div class="alert-box info" style="margin-top:14px;">
+      <div class="icon">i</div>
+      <div class="content"><strong>Como ler o mapa</strong>Subir no eixo Y (Δ pCO₂ alto) significa fluxo tecidual ruim. Andar para a esquerda no eixo X (SvcO₂ baixa) significa que os tecidos estão extraindo mais O₂. Quanto mais para o canto superior-esquerdo (Q4), pior a situação. O canto superior-direito (Q3) é o mais traiçoeiro porque a SvcO₂ engana.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Resumo dos critérios e condutas</div>
+    <div class="table-wrap"><table>
+      <tr><th>Quadrante</th><th>SvcO₂</th><th>Δ pCO₂</th><th>Mecanismo</th><th>Conduta inicial</th></tr>
+      <tr><td><span class="pill pill-green">Q1 — adequado</span></td><td>≥ 70%</td><td>&lt; 6</td><td>Sem hipoperfusão</td><td>Manter monitoramento; verificar lactato (hiperlactatemia tipo B se ainda alto)</td></tr>
+      <tr><td><span class="pill pill-amber">Q2 — oferta</span></td><td>&lt; 70%</td><td>&lt; 6</td><td>Problema na oferta de O₂</td><td>Tríade: Hb · SaO₂ · DC. Transfundir se Hb &lt; 7–8</td></tr>
+      <tr><td><span class="pill pill-coral">Q3 — falsa segurança</span></td><td>≥ 70%</td><td>≥ 6</td><td>Shunting / citopática / foco</td><td>Não confiar na SvcO₂. Reavaliar foco, eco, lactato</td></tr>
+      <tr><td><span class="pill pill-red">Q4 — baixo débito</span></td><td>&lt; 70%</td><td>≥ 6</td><td>Choque confirmado com baixo DC</td><td>Identificar mecanismo via POCUS; volume, vasopressor ou inotrópico conforme padrão</td></tr>
+    </table></div>
+  </div>
+
+</section>
+</main>
+<script src="../assets/app.js"></script>
+
+</body>
+</html>

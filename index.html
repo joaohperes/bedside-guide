@@ -2,45 +2,115 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VM Guide</title>
+<title>Bedside Guide — Guias Clínicos de UTI</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+  body{display:flex;align-items:flex-start;justify-content:center;padding:0}
+  .hub-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:80px 24px 60px;width:100%}
+  .hub-logo{display:flex;align-items:center;gap:10px;margin-bottom:40px}
+  .hub-logo-text{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--teal);letter-spacing:.06em}
+  .hub-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);opacity:.5}
+  .hub-headline{text-align:center;max-width:560px;margin-bottom:56px}
+  .hub-headline h1{font-size:clamp(24px,5vw,38px);font-weight:600;color:#e8ecf2;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
+  .hub-headline p{font-size:14px;color:var(--text2);line-height:1.7;max-width:440px;margin:0 auto}
+  .modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;width:100%;max-width:700px}
+  .module-card{display:block;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px 26px;text-decoration:none;transition:border-color .2s,transform .2s,background .2s;position:relative;overflow:hidden}
+  .module-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,var(--card-glow,.08) 0%,transparent 65%);pointer-events:none}
+  .module-card:hover{border-color:var(--card-color,var(--teal));background:var(--bg3);transform:translateY(-3px)}
+  .module-card .mc-badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--card-color,var(--teal));margin-bottom:12px;display:flex;align-items:center;gap:6px}
+  .module-card .mc-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--card-color,var(--teal));flex-shrink:0}
+  .module-card .mc-title{font-size:18px;font-weight:600;color:#e8ecf2;margin-bottom:8px;line-height:1.2}
+  .module-card .mc-sub{font-size:12.5px;color:var(--text2);line-height:1.55;margin-bottom:16px}
+  .module-card .mc-topics{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+  .module-card .mc-topic{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text3)}
+  .module-card .mc-cta{font-family:var(--mono);font-size:11px;color:var(--card-color,var(--teal));display:flex;align-items:center;gap:5px;opacity:.7;transition:opacity .18s}
+  .module-card:hover .mc-cta{opacity:1}
+  .coming-soon{opacity:.45;pointer-events:none;cursor:default}
+  .coming-soon .mc-badge::after{content:'EM BREVE';margin-left:6px;font-size:9px;background:var(--bg3);border:1px solid var(--border);padding:1px 6px;border-radius:3px;color:var(--text3)}
+  .hub-footer{margin-top:56px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.04em;line-height:1.8}
+  @media(max-width:640px){.hub-wrap{padding:56px 20px 48px}.modules-grid{grid-template-columns:1fr}.hub-headline h1{font-size:24px}}
+</style>
 </head>
-<body data-page="">
-
-<main class="hub-main">
-  <div class="hub-hero">
-    <h1>VM Guide — Ventilação Mecânica</h1>
-    <p>Guia prático de ventilação mecânica, indutores para RSI e sedoanalgesia, baseado em UpToDate 2026, FCCS e diretrizes. Escolha um tema abaixo, use a busca (<strong>⌘K</strong>) ou ative o <strong>Modo Plantão</strong> para ver só as tabelas essenciais.</p>
+<body>
+<div class="hub-wrap">
+  <div class="hub-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1db88a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24"/><path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24"/><path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24"/>
+    </svg>
+    <span class="hub-logo-text">bedside</span>
+    <span class="hub-logo-dot"></span>
   </div>
-  <div id="hub-content"></div>
-</main>
 
-<script src="assets/app.js"></script>
-<script>
-// Monta o hub a partir do índice global PAGES (definido em app.js)
-(function(){
-  const wrap=document.getElementById('hub-content');
-  let html='';let lastCat=null;
-  PAGES.forEach(p=>{
-    if(p.cat!==lastCat){
-      if(lastCat!==null)html+='</div>';
-      html+='<div class="hub-cat">'+p.cat+'</div><div class="hub-grid">';
-      lastCat=p.cat;
-    }
-    html+='<a class="hub-card" href="'+p.file+'">'+
-      '<div class="hc-title">'+p.title+'</div>'+
-      '<div class="hc-sub">'+(p.subtitle||'')+'</div>'+
-      '<span class="hc-arrow">Abrir →</span></a>';
-  });
-  if(lastCat!==null)html+='</div>';
-  wrap.innerHTML=html;
-})();
-</script>
+  <div class="hub-headline">
+    <h1>Guias clínicos<br>para a beira do leito</h1>
+    <p>Material de apoio à decisão clínica em UTI e emergência. Fundamentos, condutas e calculadoras organizados por tema.</p>
+  </div>
+
+  <div class="modules-grid">
+
+    <a class="module-card" href="vm/fisiologia.html" style="--card-color:#1db88a;--card-glow:rgba(29,184,138,.06)">
+      <div class="mc-badge">VM Guide</div>
+      <div class="mc-title">Ventilação<br>Mecânica</div>
+      <div class="mc-sub">Modos, parâmetros, SDRA, desmame, dissincronia e assistente de conduta IA.</div>
+      <div class="mc-topics">
+        <span class="mc-topic">SDRA · Prona</span>
+        <span class="mc-topic">DPOC & Asma</span>
+        <span class="mc-topic">Desmame</span>
+        <span class="mc-topic">Pearls & Pitfalls</span>
+        <span class="mc-topic">Assistente IA</span>
+      </div>
+      <div class="mc-cta">Abrir guia →</div>
+    </a>
+
+    <a class="module-card" href="hemo/fisio.html" style="--card-color:#7c6ff7;--card-glow:rgba(124,111,247,.06)">
+      <div class="mc-badge">Hemo Guide</div>
+      <div class="mc-title">Hemodinâmica<br>&amp; Choque</div>
+      <div class="mc-sub">Gasometria pareada, POCUS VCI, quadrantes SvcO₂ × Δ pCO₂, vasopressores e casos práticos.</div>
+      <div class="mc-topics">
+        <span class="mc-topic">SvcO₂ · Δ pCO₂</span>
+        <span class="mc-topic">POCUS VCI</span>
+        <span class="mc-topic">Vasopressores</span>
+        <span class="mc-topic">Casos práticos</span>
+        <span class="mc-topic">SSC 2026</span>
+      </div>
+      <div class="mc-cta">Abrir guia →</div>
+    </a>
+
+    <div class="module-card coming-soon" style="--card-color:#3b9eff;--card-glow:rgba(59,158,255,.06)">
+      <div class="mc-badge">Neuro Guide</div>
+      <div class="mc-title">Paciente<br>Neurocrítico</div>
+      <div class="mc-sub">TCE grave, AVC hemorrágico, hipertensão intracraniana e monitorização neurológica.</div>
+      <div class="mc-topics">
+        <span class="mc-topic">PIC · PPC</span>
+        <span class="mc-topic">AVC</span>
+        <span class="mc-topic">Status epiléptico</span>
+      </div>
+      <div class="mc-cta">Em breve →</div>
+    </div>
+
+    <div class="module-card coming-soon" style="--card-color:#f0a030;--card-glow:rgba(240,160,48,.06)">
+      <div class="mc-badge">Procedimentos</div>
+      <div class="mc-title">Procedimentos<br>de UTI</div>
+      <div class="mc-sub">IOT difícil, acesso central, drenagem torácica, paracentese e pericardiocentese.</div>
+      <div class="mc-topics">
+        <span class="mc-topic">IOT · VNI</span>
+        <span class="mc-topic">Acesso central</span>
+        <span class="mc-topic">POCUS guiado</span>
+      </div>
+      <div class="mc-cta">Em breve →</div>
+    </div>
+
+  </div>
+
+  <div class="hub-footer">
+    <div>Material de apoio clínico — não substitui julgamento médico</div>
+    <div style="margin-top:6px;opacity:.6">João H. Peres · César A. Seidler Junior · Atualizado jun/2026</div>
+  </div>
+</div>
 </body>
 </html>

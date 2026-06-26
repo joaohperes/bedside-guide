@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vasopressores e Inotrópicos — Hemo Guide</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-module="hemo" data-page="drogas">
+<main class="main">
+  <p class="section-title">Vasopressores e Inotrópicos</p>
+  <p class="section-sub">Doses, diluições e algoritmo de escalonamento</p>
+  
+
+  <div class="alert-box warn">
+    <div class="icon">!</div>
+    <div class="content"><strong>Aviso clínico</strong>Doses e diluições são referências práticas — confirme no protocolo do seu serviço, na bula e com o farmacêutico clínico antes de prescrever. Diluições padrão variam entre instituições. Pesos extremos, gestação, pediatria e insuficiência hepática/renal exigem ajuste individual.</div>
+  </div>
+
+  <nav class="sub-nav">
+    <button class="sub-nav-btn active" onclick="showSubsection('drogas','choque',this)">Por choque</button>
+    <button class="sub-nav-btn" onclick="showSubsection('drogas','vaso',this)">Vasopressores</button>
+    <button class="sub-nav-btn" onclick="showSubsection('drogas','ino',this)">Inotrópicos</button>
+    <button class="sub-nav-btn" onclick="showSubsection('drogas','adj',this)">Adjuvantes</button>
+    <button class="sub-nav-btn" onclick="showSubsection('drogas','algo',this)">Algoritmo</button>
+    <button class="sub-nav-btn" onclick="showSubsection('drogas','seg',this)">Segurança</button>
+  </nav>
+</main>
+<script src="../assets/app.js"></script>
+
+<script>
+function showSubsection(section,sub,btn){
+  document.querySelectorAll('[data-sub]').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.sub-nav-btn').forEach(b=>b.classList.remove('active'));
+  const el=document.querySelector('[data-sub="'+sub+'"]');
+  if(el)el.classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+function toggleCard(card,e){
+  if(e&&e.target.tagName.toLowerCase()==='a')return;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

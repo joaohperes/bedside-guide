@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadoras Hemodinâmicas — Hemo Guide</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-module="hemo" data-page="calc-hemo">
+<main class="main">
+  <p class="section-title">Calculadoras Hemodinâmicas</p>
+  <p class="section-sub">Δ pCO₂ · VCI · VPP · Winter · DO₂ · Lactato</p>
+  
+
+  <div class="card">
+    <div class="card-title blue">Δ pCO₂ venoarterial</div>
+    <div class="formula">Δ pCO<sub>2</sub><span class="op">=</span>pCO<sub>2 venosa</sub><span class="op">−</span>pCO<sub>2 arterial</sub></div>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">pCO₂ venosa central (mmHg)</label><input type="number" id="pco2v" class="calc-input" placeholder="ex: 48" min="0" max="150" oninput="calcDelta()"></div>
+      <div class="calc-field"><label class="calc-label">pCO₂ arterial (mmHg)</label><input type="number" id="pco2a" class="calc-input" placeholder="ex: 38" min="0" max="150" oninput="calcDelta()"></div>
+    </div>
+    <div class="calc-result empty" id="result-delta-empty"><div class="calc-result-empty-msg">Preencha os campos acima</div></div>
+    <div class="calc-result" id="result-delta" style="display:none;"><div class="calc-result-value" id="val-delta">—</div><div class="calc-result-interp" id="interp-delta"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title teal">cIVC — Índice de Colapsibilidade (ventilação espontânea)</div>
+    <div class="formula teal">cIVC<span class="op">=</span><span class="frac"><span>D<sub>max</sub> − D<sub>min</sub></span><span>D<sub>max</sub></span></span><span class="op">×</span><span class="num">100</span></div>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">Diâmetro máximo VCI — expiração (cm)</label><input type="number" id="vcimax" class="calc-input" placeholder="ex: 2.2" step="0.1" min="0" max="5" oninput="calcVCI()"></div>
+      <div class="calc-field"><label class="calc-label">Diâmetro mínimo VCI — inspiração (cm)</label><input type="number" id="vcimin" class="calc-input" placeholder="ex: 0.9" step="0.1" min="0" max="5" oninput="calcVCI()"></div>
+    </div>
+    <div class="calc-result empty" id="result-vci-empty"><div class="calc-result-empty-msg">Preencha os campos acima</div></div>
+    <div class="calc-result" id="result-vci" style="display:none;"><div class="calc-result-value" id="val-vci">—</div><div class="calc-result-interp" id="interp-vci"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title purple">dIVC — Índice de Distensibilidade (ventilação mecânica)</div>
+    <div class="formula purple">dIVC<span class="op">=</span><span class="frac"><span>D<sub>max</sub> − D<sub>min</sub></span><span>D<sub>min</sub></span></span><span class="op">×</span><span class="num">100</span></div>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">Diâmetro máximo VCI — inspiração (cm)</label><input type="number" id="dvcimx" class="calc-input" placeholder="ex: 2.4" step="0.1" min="0" max="5" oninput="calcDVCI()"></div>
+      <div class="calc-field"><label class="calc-label">Diâmetro mínimo VCI — expiração (cm)</label><input type="number" id="dvcimn" class="calc-input" placeholder="ex: 1.8" step="0.1" min="0" max="5" oninput="calcDVCI()"></div>
+    </div>
+    <div class="calc-result empty" id="result-dvci-empty"><div class="calc-result-empty-msg">Preencha os campos acima</div></div>
+    <div class="calc-result" id="result-dvci" style="display:none;"><div class="calc-result-value" id="val-dvci">—</div><div class="calc-result-interp" id="interp-dvci"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title blue">VPP — Variação de Pressão de Pulso (paciente intubado)</div>
+    <div class="formula">VPP<span class="op">=</span><span class="frac"><span>PP<sub>max</sub> − PP<sub>min</sub></span><span>(PP<sub>max</sub> + PP<sub>min</sub>) / 2</span></span><span class="op">×</span><span class="num">100</span></div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Prediz responsividade a volume. Válido em VM controlada, Vt ≥ 8 mL/kg e ritmo sinusal. Use as pressões de pulso (PAS − PAD) máxima e mínima de um mesmo ciclo respiratório.</p>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">PP máxima — inspiração (mmHg)</label><input type="number" id="ppmax" class="calc-input" placeholder="ex: 55" min="0" max="200" oninput="calcVPP()"></div>
+      <div class="calc-field"><label class="calc-label">PP mínima — expiração (mmHg)</label><input type="number" id="ppmin" class="calc-input" placeholder="ex: 42" min="0" max="200" oninput="calcVPP()"></div>
+    </div>
+    <div class="calc-result empty" id="result-vpp-empty"><div class="calc-result-empty-msg">Preencha os campos acima</div></div>
+    <div class="calc-result" id="result-vpp" style="display:none;"><div class="calc-result-value" id="val-vpp">—</div><div class="calc-result-interp" id="interp-vpp"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title green">DO₂ e CaO₂ — oferta de oxigênio</div>
+    <div class="formula green">CaO<sub>2</sub><span class="op">=</span>(Hb<span class="op">×</span><span class="num">1,34</span><span class="op">×</span>SaO<sub>2</sub>)<span class="op">+</span>(pO<sub>2</sub><span class="op">×</span><span class="num">0,003</span>)</div>
+    <div class="formula">DO<sub>2</sub><span class="op">=</span>DC<span class="op">×</span>CaO<sub>2</sub><span class="op">×</span><span class="num">10</span></div>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">Hemoglobina (g/dL)</label><input type="number" id="hb" class="calc-input" placeholder="ex: 10" step="0.1" min="0" max="25" oninput="calcDO2()"></div>
+      <div class="calc-field"><label class="calc-label">SaO₂ arterial (%)</label><input type="number" id="sao2" class="calc-input" placeholder="ex: 97" step="0.1" min="0" max="100" oninput="calcDO2()"></div>
+      <div class="calc-field"><label class="calc-label">pO₂ arterial (mmHg)</label><input type="number" id="po2" class="calc-input" placeholder="ex: 90" min="0" max="600" oninput="calcDO2()"></div>
+      <div class="calc-field"><label class="calc-label">Débito cardíaco (L/min) — opcional</label><input type="number" id="dc" class="calc-input" placeholder="ex: 5" step="0.1" min="0" max="20" oninput="calcDO2()"></div>
+    </div>
+    <div class="calc-result empty" id="result-do2-empty"><div class="calc-result-empty-msg">Preencha Hb, SaO₂ e pO₂ para calcular CaO₂. Adicione DC para calcular DO₂.</div></div>
+    <div class="calc-result" id="result-do2" style="display:none;">
+      <div class="calc-result-block">
+        <div class="calc-result-label">CaO₂</div>
+        <div class="calc-result-value" id="val-cao2">—</div>
+        <div class="calc-result-interp" id="interp-cao2"></div>
+      </div>
+      <div class="calc-result-block">
+        <div class="calc-result-label">DO₂</div>
+        <div class="calc-result-value" id="val-do2">—</div>
+        <div class="calc-result-interp" id="interp-do2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title amber">Fórmula de Winter — compensação respiratória na acidose metabólica</div>
+    <div class="formula amber">pCO<sub>2 esperado</sub><span class="op">=</span><span class="num">1,5</span><span class="op">×</span>HCO<sub>3</sub><sup>−</sup><span class="op">+</span><span class="num">8</span><span class="op">±</span><span class="num">2</span></div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Verifica se a compensação respiratória está adequada para o grau de acidose metabólica.</p>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">HCO₃ medido (mmol/L)</label><input type="number" id="hco3" class="calc-input" placeholder="ex: 18" min="0" max="50" oninput="calcWinter()"></div>
+      <div class="calc-field"><label class="calc-label">pCO₂ arterial medido (mmHg)</label><input type="number" id="pco2w" class="calc-input" placeholder="ex: 37" min="0" max="100" oninput="calcWinter()"></div>
+    </div>
+    <div class="calc-result empty" id="result-winter-empty"><div class="calc-result-empty-msg">Preencha os campos acima</div></div>
+    <div class="calc-result" id="result-winter" style="display:none;"><div class="calc-result-value" id="val-winter">—</div><div class="calc-result-interp" id="interp-winter"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title red">Lactato clearance — depuração em 2 horas</div>
+    <div class="formula red"><span class="frac"><span>Lac<sub>0h</sub> − Lac<sub>2h</sub></span><span>Lac<sub>0h</sub></span></span><span class="op">×</span><span class="num">100</span></div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Meta SSC 2026: clearance ≥ 10% em 2 h é sinal de resposta à ressuscitação. Alternativa ao uso de SvcO₂ seriada quando não há CVC disponível.</p>
+    <div class="calc-fields">
+      <div class="calc-field"><label class="calc-label">Lactato inicial — T0 (mmol/L)</label><input type="number" id="lac0" class="calc-input" placeholder="ex: 6,2" min="0" max="30" step="0.1" oninput="calcLactate()"></div>
+      <div class="calc-field"><label class="calc-label">Lactato em 2 h — T2h (mmol/L)</label><input type="number" id="lac2" class="calc-input" placeholder="ex: 4,8" min="0" max="30" step="0.1" oninput="calcLactate()"></div>
+    </div>
+    <div class="calc-result empty" id="result-lactate-empty"><div class="calc-result-empty-msg">Preencha os campos acima</div></div>
+    <div class="calc-result" id="result-lactate" style="display:none;"><div class="calc-result-value" id="val-lactate">—</div><div class="calc-result-interp" id="interp-lactate"></div></div>
+  </div>
+
+</section>
+</main>
+<script src="../assets/app.js"></script>
+
+<script>
+function showCalcResult(key,hasResult){
+  const res=document.getElementById('result-'+key);
+  const empty=document.getElementById('result-'+key+'-empty');
+  if(hasResult){if(res)res.style.display='block';if(empty)empty.style.display='none';}
+  else{if(res)res.style.display='none';if(empty)empty.style.display='block';}
+}
+function calcDO2(){
+  const hb=parseFloat(document.getElementById('hb').value);
+  const sao2=parseFloat(document.getElementById('sao2').value);
+  const po2=parseFloat(document.getElementById('po2').value);
+  const dc=parseFloat(document.getElementById('dc').value);
+  if(isNaN(hb)||isNaN(sao2)||isNaN(po2)){showCalcResult('do2',false);return;}
+  const cao2=(hb*1.34*(sao2/100))+(po2*0.003);
+  document.getElementById('val-cao2').textContent=cao2.toFixed(1)+' mL O₂/dL';
+  let cc='var(--teal)',ci='Normal (18–20 mL O₂/dL)';
+  if(cao2<14){cc='var(--coral)';ci='Muito reduzido — avaliar Hb e SaO₂';}
+  else if(cao2<17){cc='var(--amber)';ci='Reduzido — verificar componentes';}
+  document.getElementById('val-cao2').style.color=cc;
+  document.getElementById('interp-cao2').innerHTML=ci;
+  if(!isNaN(dc)&&dc>0){
+    const do2v=dc*cao2*10;
+    document.getElementById('val-do2').textContent=do2v.toFixed(0)+' mL O₂/min';
+    let dc2='var(--teal)',di='Normal (950–1150 mL O₂/min)';
+    if(do2v<500){dc2='var(--coral)';di='Gravemente reduzido — hipoperfusão crítica';}
+    else if(do2v<700){dc2='var(--amber)';di='Reduzido — avaliar DC e CaO₂';}
+    document.getElementById('val-do2').style.color=dc2;
+    document.getElementById('interp-do2').innerHTML=di;
+  } else {
+    document.getElementById('val-do2').textContent='—';
+    document.getElementById('interp-do2').innerHTML='Informe o DC para calcular DO₂';
+    document.getElementById('val-do2').style.color='var(--text2)';
+  }
+  showCalcResult('do2',true);
+}
+function calcLactate(){
+  const lac0=parseFloat(document.getElementById('lac0').value);
+  const lac2=parseFloat(document.getElementById('lac2').value);
+  if(isNaN(lac0)||isNaN(lac2)||lac0<=0){showCalcResult('lactate',false);return;}
+  const cl=((lac0-lac2)/lac0)*100;
+  document.getElementById('val-lactate').textContent=cl.toFixed(1)+'%';
+  let color='var(--teal)',interp='';
+  if(cl>=10){color='var(--teal)';interp='<strong>Resposta adequada (clearance ≥ 10%)</strong> — ressuscitação eficaz.';}
+  else if(cl>=0){color='var(--amber)';interp='<strong>Clearance insuficiente (&lt; 10%)</strong> — resposta parcial. Reavaliar.';}
+  else{color='var(--coral)';interp='<strong>Lactato em ascensão — piora metabólica</strong>. Reavaliar urgente.';}
+  document.getElementById('val-lactate').style.color=color;
+  document.getElementById('interp-lactate').innerHTML=interp;
+  showCalcResult('lactate',true);
+}
+</script>
+</body>
+</html>

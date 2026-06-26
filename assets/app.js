@@ -1,50 +1,99 @@
 // ============================================================
-// VM GUIDE — shell compartilhado (header, sidebar, busca global)
+// BEDSIDE GUIDE — shell compartilhado (header, sidebar, busca)
+// Suporta múltiplos módulos: vm/, hemo/, etc.
+// data-module="vm" data-page="sdra" nos <body> das páginas
 // ============================================================
 
-// Índice global de páginas. Ordem = ordem da sidebar.
-// cat = categoria (agrupador da sidebar). subtitle alimenta a busca.
-const PAGES = [
-  {id:'fisiologia',   file:'fisiologia.html',   cat:'Fundamentos',              label:'Fisiologia da VM',       title:'Fisiologia da VM com Pressão Positiva', subtitle:'Ciclo ventilatório, mecânica pulmonar e efeitos hemodinâmicos'},
-  {id:'modos',        file:'modos.html',        cat:'Fundamentos',              label:'Modos de VM',            title:'Modos de Ventilação Mecânica',          subtitle:'AC-VC · AC-PC · SIMV-PSV · PSV'},
-  {id:'parametros',   file:'parametros.html',   cat:'Fundamentos',              label:'Parâmetros iniciais',    title:'Parâmetros Iniciais',                   subtitle:'Configuração passo a passo (UpToDate / FCCS)'},
-  {id:'sdra',         file:'sdra.html',         cat:'Patologias',               label:'SDRA',                   title:'SDRA — Ventilação Protetora (LTVV)',    subtitle:'Low Tidal Volume Ventilation'},
-  {id:'prona',        file:'prona.html',        cat:'Patologias',               label:'Posição prona',          title:'Posição Prona na SDRA',                 subtitle:'Benefício de mortalidade na SDRA grave (PROSEVA)'},
-  {id:'dpoc-asma',    file:'dpoc-asma.html',    cat:'Patologias',               label:'DPOC & Asma',            title:'DPOC & Asma — Hiperinsuflação Dinâmica',subtitle:'Air trapping e obstrução ao fluxo expiratório'},
-  {id:'hipercapnia',  file:'hipercapnia.html',  cat:'Patologias',               label:'Hipercapnia permissiva', title:'Hipercapnia Permissiva',                subtitle:'Quando e como aceitar a elevação da PaCO₂'},
-  {id:'tce',          file:'tce.html',          cat:'Patologias',               label:'VM no TCE',              title:'VM no TCE — Estratégia Neuroprotetora', subtitle:'Metas de PPC / PIC · Normoventilação'},
-  {id:'complicacoes', file:'complicacoes.html', cat:'Monitorização & Segurança',label:'Complicações da VM',     title:'Complicações da VM',                    subtitle:'Reconhecimento precoce, fisiopatologia e conduta'},
-  {id:'dissincronia', file:'dissincronia.html', cat:'Monitorização & Segurança',label:'Dissincronia P-V',       title:'Dissincronia Paciente-Ventilador',      subtitle:'Tipos, diagnóstico pelas curvas e conduta'},
-  {id:'bnm',          file:'bnm.html',          cat:'Monitorização & Segurança',label:'Bloqueio neuromuscular', title:'Bloqueio Neuromuscular na SDRA',        subtitle:'Quando paralisar, qual agente e por quanto tempo'},
-  {id:'desmame',      file:'desmame.html',      cat:'Desmame',                  label:'SAT / SBT / Extubação',  title:'Desmame Ventilatório — SAT / SBT / Extubação', subtitle:'Critérios, protocolo e T-piece vs PSV baixo'},
-  {id:'vni',          file:'vni.html',          cat:'Desmame',                  label:'VNI & alto fluxo',       title:'VNI & Cânula Nasal de Alto Fluxo',      subtitle:'Quando evitar a IOT — e quando não insistir (ROX)'},
-  {id:'indutores',    file:'indutores.html',    cat:'Farmacologia',             label:'Indutores para RSI',     title:'Indutores para RSI',                    subtitle:'Perfil farmacológico e algoritmo por cenário'},
-  {id:'sedoanalgesia',file:'sedoanalgesia.html',cat:'Farmacologia',             label:'Sedoanalgesia na UTI',   title:'Sedoanalgesia pós-IOT na UTI',          subtitle:'Sedativos, opioides e escalas de monitoramento'},
-  {id:'calculadora',  file:'calculadora.html',  cat:'Referência',               label:'Calculadoras',           title:'Calculadoras',                          subtitle:'PBW/VC · Driving Pressure · VM · P/F · IRRS'},
-  {id:'tabelas',      file:'tabelas.html',      cat:'Referência',               label:'Tabelas rápidas',        title:'Tabelas Rápidas',                       subtitle:'Consulta de plantão — situação vs estratégia'},
-  {id:'pearls',       file:'pearls.html',       cat:'Pearls & Pitfalls',        label:'Cards clínicos',         title:'Pearls & Pitfalls',                     subtitle:'Cenários de plantão: acerto, erro comum e o porquê do mecanismo'},
-  {id:'quiz',         file:'quiz.html',         cat:'Pearls & Pitfalls',        label:'Caso clínico / Quiz',    title:'Caso Clínico Interativo',               subtitle:'Quiz de múltipla escolha'},
-  {id:'assistente',   file:'assistente.html',   cat:'Assistente IA',            label:'Assistente de conduta',  title:'Assistente de Conduta (IA)',            subtitle:'Cole a anamnese e receba sugestão de conduta ventilatória'}
-];
+// ── Módulos disponíveis ──────────────────────────────────────
+const MODULES = {
+  vm: {
+    id: 'vm',
+    label: 'VM Guide',
+    subtitle: 'Ventilação Mecânica',
+    root: 'vm/',
+    color: '#1db88a',
+  },
+  hemo: {
+    id: 'hemo',
+    label: 'Hemo Guide',
+    subtitle: 'Hemodinâmica & Choque',
+    root: 'hemo/',
+    color: '#7c6ff7',
+  },
+};
 
-// Caminho relativo até a raiz (páginas ficam na raiz, então '' basta).
-function pageOf(id){return PAGES.find(p=>p.id===id);}
+// ── Índice de páginas por módulo ─────────────────────────────
+const MODULE_PAGES = {
+  vm: [
+    {id:'fisiologia',   file:'fisiologia.html',   cat:'Fundamentos',              label:'Fisiologia da VM',        title:'Fisiologia da VM com Pressão Positiva', subtitle:'Ciclo ventilatório, mecânica pulmonar e efeitos hemodinâmicos'},
+    {id:'modos',        file:'modos.html',        cat:'Fundamentos',              label:'Modos de VM',             title:'Modos de Ventilação Mecânica',          subtitle:'AC-VC · AC-PC · SIMV-PSV · PSV'},
+    {id:'parametros',   file:'parametros.html',   cat:'Fundamentos',              label:'Parâmetros iniciais',     title:'Parâmetros Iniciais',                   subtitle:'Configuração passo a passo (UpToDate / FCCS)'},
+    {id:'sdra',         file:'sdra.html',         cat:'Patologias',               label:'SDRA',                    title:'SDRA — Ventilação Protetora (LTVV)',    subtitle:'Low Tidal Volume Ventilation'},
+    {id:'prona',        file:'prona.html',        cat:'Patologias',               label:'Posição prona',           title:'Posição Prona na SDRA',                 subtitle:'Benefício de mortalidade na SDRA grave (PROSEVA)'},
+    {id:'dpoc-asma',    file:'dpoc-asma.html',    cat:'Patologias',               label:'DPOC & Asma',             title:'DPOC & Asma — Hiperinsuflação Dinâmica',subtitle:'Air trapping e obstrução ao fluxo expiratório'},
+    {id:'hipercapnia',  file:'hipercapnia.html',  cat:'Patologias',               label:'Hipercapnia permissiva',  title:'Hipercapnia Permissiva',                subtitle:'Quando e como aceitar a elevação da PaCO₂'},
+    {id:'tce',          file:'tce.html',          cat:'Patologias',               label:'VM no TCE',               title:'VM no TCE — Estratégia Neuroprotetora', subtitle:'Metas de PPC / PIC · Normoventilação'},
+    {id:'complicacoes', file:'complicacoes.html', cat:'Monitorização & Segurança',label:'Complicações da VM',      title:'Complicações da VM',                    subtitle:'Reconhecimento precoce, fisiopatologia e conduta'},
+    {id:'dissincronia', file:'dissincronia.html', cat:'Monitorização & Segurança',label:'Dissincronia P-V',        title:'Dissincronia Paciente-Ventilador',      subtitle:'Tipos, diagnóstico pelas curvas e conduta'},
+    {id:'bnm',          file:'bnm.html',          cat:'Monitorização & Segurança',label:'Bloqueio neuromuscular',  title:'Bloqueio Neuromuscular na SDRA',        subtitle:'Quando paralisar, qual agente e por quanto tempo'},
+    {id:'desmame',      file:'desmame.html',      cat:'Desmame',                  label:'SAT / SBT / Extubação',   title:'Desmame Ventilatório — SAT / SBT / Extubação', subtitle:'Critérios, protocolo e T-piece vs PSV baixo'},
+    {id:'vni',          file:'vni.html',          cat:'Desmame',                  label:'VNI & alto fluxo',        title:'VNI & Cânula Nasal de Alto Fluxo',      subtitle:'Quando evitar a IOT — e quando não insistir (ROX)'},
+    {id:'indutores',    file:'indutores.html',    cat:'Farmacologia',             label:'Indutores para RSI',      title:'Indutores para RSI',                    subtitle:'Perfil farmacológico e algoritmo por cenário'},
+    {id:'sedoanalgesia',file:'sedoanalgesia.html',cat:'Farmacologia',             label:'Sedoanalgesia na UTI',    title:'Sedoanalgesia pós-IOT na UTI',          subtitle:'Sedativos, opioides e escalas de monitoramento'},
+    {id:'calculadora',  file:'calculadora.html',  cat:'Referência',               label:'Calculadoras',            title:'Calculadoras',                          subtitle:'PBW/VC · Driving Pressure · VM · P/F · IRRS'},
+    {id:'tabelas',      file:'tabelas.html',      cat:'Referência',               label:'Tabelas rápidas',         title:'Tabelas Rápidas',                       subtitle:'Consulta de plantão — situação vs estratégia'},
+    {id:'pearls',       file:'pearls.html',       cat:'Pearls & Pitfalls',        label:'Cards clínicos',          title:'Pearls & Pitfalls',                     subtitle:'Cenários de plantão: acerto, erro comum e o porquê do mecanismo'},
+    {id:'quiz',         file:'quiz.html',         cat:'Pearls & Pitfalls',        label:'Caso clínico / Quiz',     title:'Caso Clínico Interativo',               subtitle:'Quiz de múltipla escolha'},
+    {id:'assistente',   file:'assistente.html',   cat:'Assistente IA',            label:'Assistente de conduta',   title:'Assistente de Conduta (IA)',            subtitle:'Cole a anamnese e receba sugestão de conduta ventilatória'},
+  ],
+  hemo: [
+    {id:'fisio',        file:'fisio.html',        cat:'Fundamentos',              label:'Fisiologia',              title:'Base Fisiológica',                      subtitle:'DO₂, VO₂, Fick, Frank-Starling e choque críptico'},
+    {id:'do2',          file:'do2.html',          cat:'Fundamentos',              label:'DO₂ / CaO₂',             title:'Oferta de O₂',                          subtitle:'DO₂, CaO₂, tríade da oferta e intervenções'},
+    {id:'scvo2',        file:'scvo2.html',        cat:'Marcadores de perfusão',   label:'SvcO₂',                  title:'SvcO₂ — Saturação Venosa Central',       subtitle:'Como interpretar e onde coletar'},
+    {id:'dpco2',        file:'dpco2.html',        cat:'Marcadores de perfusão',   label:'Δ pCO₂',                 title:'Δ pCO₂ — Gradiente Venoarterial',        subtitle:'O marcador de fluxo que a SvcO₂ não captura'},
+    {id:'quadrantes',   file:'quadrantes.html',   cat:'POCUS / Imagem',           label:'Quadrantes',              title:'Os 4 Quadrantes SvcO₂ × Δ pCO₂',        subtitle:'Plano cartesiano para interpretar a hipoperfusão'},
+    {id:'vci',          file:'vci.html',          cat:'POCUS / Imagem',           label:'POCUS VCI',               title:'POCUS — Veia Cava Inferior',             subtitle:'Técnica, fórmulas e interpretação'},
+    {id:'rush',         file:'rush.html',         cat:'POCUS / Imagem',           label:'RUSH',                    title:'Protocolo RUSH',                        subtitle:'Rapid Ultrasound for Shock and Hypotension'},
+    {id:'ecg',          file:'ecg.html',          cat:'POCUS / Imagem',           label:'ECG',                     title:'ECG no Choque',                         subtitle:'Achados que mudam o manejo imediato'},
+    {id:'integracao',   file:'integracao.html',   cat:'Síntese',                  label:'Integração',              title:'Integração Clínica',                    subtitle:'Gasometria pareada + POCUS VCI em conjunto'},
+    {id:'fluxograma',   file:'fluxograma.html',   cat:'Síntese',                  label:'Fluxograma',              title:'Fluxograma Integrado',                  subtitle:'Do choque à conduta — padrão, gasometria, POCUS, drogas'},
+    {id:'padroes',      file:'padroes.html',      cat:'Síntese',                  label:'Padrões',                 title:'Padrões Hemodinâmicos',                 subtitle:'Tabelas de referência por tipo de choque'},
+    {id:'drogas',       file:'drogas.html',       cat:'Terapêutica',              label:'Drogas vasoativas',       title:'Drogas Vasoativas',                     subtitle:'Doses, diluições e escalonamento'},
+    {id:'calc-hemo',    file:'calc-hemo.html',    cat:'Ferramentas',              label:'Calculadoras',            title:'Calculadoras Hemodinâmicas',            subtitle:'Δ pCO₂ · VCI · VPP · Winter · DO₂'},
+    {id:'pratica',      file:'pratica.html',      cat:'Ferramentas',              label:'Casos práticos',          title:'Prática — Casos Simulados',             subtitle:'4 casos cobrindo os 4 quadrantes'},
+    {id:'siglas',       file:'siglas.html',       cat:'Ferramentas',              label:'Siglas',                  title:'Glossário de Siglas',                   subtitle:'Referência rápida de siglas hemodinâmicas'},
+  ],
+};
+
+// ── Helpers ──────────────────────────────────────────────────
+function currentModule(){return document.body.dataset.module||'';}
 function currentPageId(){return document.body.dataset.page||'';}
+function getPages(){return MODULE_PAGES[currentModule()]||[];}
+function getRootPath(){
+  const m=MODULES[currentModule()];
+  // de dentro do módulo, root é um nível acima
+  return m ? '../' : './';
+}
 
-// ------------------------------------------------------------
-// SHELL: header + sidebar + overlay + busca + toast
-// ------------------------------------------------------------
+// ── SHELL ────────────────────────────────────────────────────
 function buildShell(){
+  const mod=currentModule();
   const curId=currentPageId();
+  const pages=getPages();
+  const root=getRootPath();
+
   // Header
   const header=document.createElement('header');
   header.className='header';
   header.innerHTML=
-    '<a class="header-logo" href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:7px"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1db88a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24"/><path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24"/><path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24"/></svg>VMguide</a>'+
-    '<span class="header-title">Ventilação Mecânica · Indutores · Sedoanalgesia</span>'+
+    '<a class="header-logo" href="'+root+'index.html" style="text-decoration:none;display:flex;align-items:center;gap:7px">'+
+      '<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1db88a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+
+        '<path d="M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24"/><path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24"/><path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24"/>'+
+      '</svg>bedside</a>'+
+    '<span class="header-title">'+(MODULES[mod]?MODULES[mod].subtitle:'Guias Clínicos de UTI')+'</span>'+
     '<div class="header-actions">'+
       '<button class="btn-search" onclick="openSearch()">Buscar <kbd>⌘K</kbd></button>'+
-      '<button class="btn-plantao" id="btnPlantao" onclick="togglePlantao()">Plantão</button>'+
+      (mod?'<button class="btn-plantao" id="btnPlantao" onclick="togglePlantao()">Plantão</button>':'')+
       '<button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>'+
     '</div>';
 
@@ -52,43 +101,52 @@ function buildShell(){
   const overlay=document.createElement('div');overlay.className='overlay';overlay.id='overlay';overlay.onclick=toggleMenu;
   const toast=document.createElement('div');toast.className='toast';toast.id='toast';
 
-  // Sidebar agrupada por categoria — seções colapsáveis
+  // Sidebar
   const nav=document.createElement('nav');
   nav.className='sidebar';nav.id='sidebar';
-  // agrupa as páginas por categoria preservando a ordem
-  const groups=[];
-  PAGES.forEach(p=>{
-    let g=groups.find(x=>x.cat===p.cat);
-    if(!g){g={cat:p.cat,items:[]};groups.push(g);}
-    g.items.push(p);
-  });
-  // estado salvo das seções abertas
-  let openState={};
-  try{openState=JSON.parse(localStorage.getItem('vmguide-nav-open'))||{};}catch(e){openState={};}
-  const curCat=(PAGES.find(p=>p.id===curId)||{}).cat;
-  let html='';
-  groups.forEach(g=>{
-    // aberta se: salva como aberta, OU contém a página ativa (sem estado salvo em contrário)
-    const saved=openState[g.cat];
-    const open=saved===true || (saved===undefined && g.cat===curCat);
-    html+='<div class="sidebar-group'+(open?' open':'')+'" data-cat="'+g.cat.replace(/"/g,'&quot;')+'">'+
-            '<button class="sidebar-section" onclick="toggleNavGroup(this)">'+
-              '<span>'+g.cat+'</span><span class="sg-arrow">▸</span>'+
-            '</button>'+
-            '<div class="sidebar-group-items">';
-    g.items.forEach(p=>{
-      const active=p.id===curId?' active':'';
-      html+='<a class="nav-link'+active+'" href="'+p.file+'">'+p.label+'</a>';
+
+  if(pages.length){
+    // Dentro de um módulo: sidebar normal com seções colapsáveis
+    const groups=[];
+    pages.forEach(p=>{
+      let g=groups.find(x=>x.cat===p.cat);
+      if(!g){g={cat:p.cat,items:[]};groups.push(g);}
+      g.items.push(p);
+    });
+    let openState={};
+    try{openState=JSON.parse(localStorage.getItem('vmguide-nav-open-'+mod))||{};}catch(e){openState={};}
+    const curCat=(pages.find(p=>p.id===curId)||{}).cat;
+    let html='<a class="nav-back" href="'+root+'index.html">← Hub</a>';
+    groups.forEach(g=>{
+      const saved=openState[g.cat];
+      const open=saved===true||(saved===undefined&&g.cat===curCat);
+      html+='<div class="sidebar-group'+(open?' open':'')+'" data-cat="'+g.cat.replace(/"/g,'&quot;')+'">'+
+              '<button class="sidebar-section" onclick="toggleNavGroup(this)">'+
+                '<span>'+g.cat+'</span><span class="sg-arrow">▸</span>'+
+              '</button>'+
+              '<div class="sidebar-group-items">';
+      g.items.forEach(p=>{
+        const active=p.id===curId?' active':'';
+        html+='<a class="nav-link'+active+'" href="'+p.file+'">'+p.label+'</a>';
+      });
+      html+='</div></div>';
+    });
+    nav.innerHTML=html;
+  } else {
+    // Hub: sidebar com links dos módulos
+    let html='<div class="sidebar-group open"><div class="sidebar-group-items">';
+    Object.values(MODULES).forEach(m=>{
+      html+='<a class="nav-link" href="'+m.root+(MODULE_PAGES[m.id][0].file)+'">'+m.label+'</a>';
     });
     html+='</div></div>';
-  });
-  nav.innerHTML=html;
+    nav.innerHTML=html;
+  }
 
-  // Modal de busca
+  // Search modal
   const sb=document.createElement('div');sb.className='search-backdrop';sb.id='searchBackdrop';sb.onclick=closeSearch;
   const sm=document.createElement('div');sm.className='search-modal';sm.id='searchModal';sm.style.display='none';
   sm.onclick=e=>e.stopPropagation();
-  sm.innerHTML='<input type="text" class="search-input" id="searchInput" placeholder="Buscar no guia… (ex: auto-PEEP, etomidato, prona)" autocomplete="off"><div class="search-results" id="searchResults"></div>';
+  sm.innerHTML='<input type="text" class="search-input" id="searchInput" placeholder="Buscar no guia… (ex: auto-PEEP, noradrenalina, VCI)" autocomplete="off"><div class="search-results" id="searchResults"></div>';
 
   const b=document.body;
   b.insertBefore(toast,b.firstChild);
@@ -100,22 +158,19 @@ function buildShell(){
   b.insertBefore(header,b.firstChild);
 }
 
-// ------------------------------------------------------------
-// SIDEBAR — seções colapsáveis (estado salvo em localStorage)
-// ------------------------------------------------------------
+// ── Sidebar colapsável ───────────────────────────────────────
 function toggleNavGroup(btn){
   const group=btn.parentElement;
   const cat=group.dataset.cat;
+  const mod=currentModule();
   const open=group.classList.toggle('open');
   let st={};
-  try{st=JSON.parse(localStorage.getItem('vmguide-nav-open'))||{};}catch(e){st={};}
+  try{st=JSON.parse(localStorage.getItem('vmguide-nav-open-'+mod))||{};}catch(e){st={};}
   st[cat]=open;
-  try{localStorage.setItem('vmguide-nav-open',JSON.stringify(st));}catch(e){}
+  try{localStorage.setItem('vmguide-nav-open-'+mod,JSON.stringify(st));}catch(e){}
 }
 
-// ------------------------------------------------------------
-// MODO PLANTÃO
-// ------------------------------------------------------------
+// ── Modo plantão ─────────────────────────────────────────────
 function setPlantaoBtn(on){
   const btn=document.getElementById('btnPlantao');
   if(!btn)return;
@@ -128,9 +183,7 @@ function togglePlantao(){
   try{localStorage.setItem('vmguide-plantao',on?'1':'0');}catch(e){}
 }
 
-// ------------------------------------------------------------
-// SHARE LINKS + TOAST
-// ------------------------------------------------------------
+// ── Share / Toast ────────────────────────────────────────────
 function copyLink(e,anchor){
   e.preventDefault();
   const url=window.location.origin+window.location.pathname+anchor;
@@ -144,9 +197,7 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2200);
 }
 
-// ------------------------------------------------------------
-// MENU MOBILE + PROGRESS
-// ------------------------------------------------------------
+// ── Menu mobile + progress ───────────────────────────────────
 function toggleMenu(){
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('show');
@@ -159,13 +210,15 @@ function initProgress(){
   });
 }
 
-// ------------------------------------------------------------
-// BUSCA GLOBAL (Cmd+K) — indexa PAGES; ao abrir, leva ao arquivo certo
-// ------------------------------------------------------------
+// ── Busca global (⌘K) ────────────────────────────────────────
+// Indexa todas as páginas de todos os módulos
 const searchIndex=[];
-PAGES.forEach(p=>{
-  searchIndex.push({title:p.title,ctx:'Seção',file:p.file});
-  if(p.subtitle)searchIndex.push({title:p.subtitle,ctx:p.label,file:p.file});
+Object.entries(MODULE_PAGES).forEach(([modId,pages])=>{
+  const modRoot=(MODULES[modId]||{}).root||'';
+  pages.forEach(p=>{
+    searchIndex.push({title:p.title,ctx:(MODULES[modId]||{}).label+' · Seção',file:modRoot+p.file,mod:modId});
+    if(p.subtitle)searchIndex.push({title:p.subtitle,ctx:(MODULES[modId]||{}).label+' · '+p.label,file:modRoot+p.file,mod:modId});
+  });
 });
 let searchHits=[],searchSel=0;
 function openSearch(){
@@ -178,11 +231,14 @@ function closeSearch(){
   document.getElementById('searchBackdrop').classList.remove('show');
   document.getElementById('searchModal').style.display='none';
 }
-function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
 function renderSearch(q){
   const res=document.getElementById('searchResults');
   const nq=norm(q.trim());
-  searchHits=nq?searchIndex.filter(i=>norm(i.title).includes(nq)||norm(i.ctx).includes(nq)):searchIndex.filter(i=>i.ctx==='Seção');
+  const root=getRootPath();
+  searchHits=nq
+    ?searchIndex.filter(i=>norm(i.title).includes(nq)||norm(i.ctx).includes(nq))
+    :searchIndex.filter(i=>i.ctx.includes('Seção'));
   searchSel=0;
   if(!searchHits.length){res.innerHTML='<div class="search-empty">Nenhum resultado para "'+q+'"</div>';return;}
   res.innerHTML=searchHits.map((h,i)=>{
@@ -193,7 +249,8 @@ function renderSearch(q){
 }
 function goToHit(i){
   const h=searchHits[i];if(!h)return;
-  window.location.href=h.file;
+  const root=getRootPath();
+  window.location.href=root+h.file;
 }
 function moveSel(d){
   const hits=document.querySelectorAll('.search-hit');
@@ -217,7 +274,7 @@ function initSearchKeys(){
 }
 
 // ============================================================
-// CALCULADORAS (rodam só se os elementos existirem na página)
+// CALCULADORAS VM (rodam só se elementos existirem na página)
 // ============================================================
 function calcPBW(){
   const h=parseFloat(document.getElementById('altura').value);
@@ -286,69 +343,95 @@ function calcIRRS(){
 }
 
 // ============================================================
-// QUIZ (só inicia se existir #quiz-container)
+// CALCULADORAS HEMO
+// ============================================================
+function showCalcResult(id,show){
+  const el=document.getElementById('calc-res-'+id);
+  if(el)el.style.display=show?'block':'none';
+}
+function calcDelta(){
+  const v=parseFloat(document.getElementById('pco2v').value);
+  const a=parseFloat(document.getElementById('pco2a').value);
+  if(isNaN(v)||isNaN(a)){showCalcResult('delta',false);return;}
+  const d=v-a;
+  document.getElementById('val-delta').textContent=d.toFixed(1)+' mmHg';
+  let t,c;
+  if(d<6){t='Normal (&lt; 6 mmHg) — fluxo tecidual adequado';c='var(--teal)';}
+  else if(d<10){t='Elevado (6–10 mmHg) — possível baixo fluxo tecidual';c='var(--amber)';}
+  else{t='Muito elevado (&gt; 10 mmHg) — baixo débito / hipoperfusão significativa';c='var(--red)';}
+  document.getElementById('val-delta').style.color=c;
+  document.getElementById('interp-delta').innerHTML=t;
+  showCalcResult('delta',true);
+}
+function calcVCI(){
+  const mx=parseFloat(document.getElementById('vcimax').value);
+  const mn=parseFloat(document.getElementById('vcimin').value);
+  if(isNaN(mx)||isNaN(mn)||mx<=0){showCalcResult('vci',false);return;}
+  const c=(mx-mn)/mx*100;
+  document.getElementById('val-vci').textContent=c.toFixed(1)+'% (cIVC)';
+  let t,col;
+  if(c>50){t='&gt; 50% — Muito provavelmente responsivo a volume';col='var(--teal)';}
+  else if(c>=20){t='20–50% — Zona cinzenta — realizar PLR ou fluid challenge';col='var(--amber)';}
+  else{t='&lt; 20% — Provavelmente não responsivo';col='var(--red)';}
+  let d='';
+  if(mx<1.5)d=' · VCI &lt; 1,5 cm — hipovolemia provável';
+  else if(mx>2.1)d=' · VCI &gt; 2,1 cm — congestão / pressão de VD elevada';
+  document.getElementById('val-vci').style.color=col;
+  document.getElementById('interp-vci').innerHTML=t+d;
+  showCalcResult('vci',true);
+}
+function calcDVCI(){
+  const mx=parseFloat(document.getElementById('dvcimx').value);
+  const mn=parseFloat(document.getElementById('dvcimn').value);
+  if(isNaN(mx)||isNaN(mn)||mn<=0){showCalcResult('dvci',false);return;}
+  const d=(mx-mn)/mn*100;
+  document.getElementById('val-dvci').textContent=d.toFixed(1)+'% (dIVC)';
+  let t,c;
+  if(d>18){t='&gt; 18% — Responsivo a volume em ventilação mecânica';c='var(--teal)';}
+  else{t='≤ 18% — Não responsivo — não administrar volume adicional';c='var(--red)';}
+  document.getElementById('val-dvci').style.color=c;
+  document.getElementById('interp-dvci').innerHTML=t;
+  showCalcResult('dvci',true);
+}
+function calcWinter(){
+  const h=parseFloat(document.getElementById('hco3').value);
+  const p=parseFloat(document.getElementById('pco2w').value);
+  if(isNaN(h)||isNaN(p)){showCalcResult('winter',false);return;}
+  const exp=1.5*h+8;
+  const lo=(exp-2).toFixed(1),hi=(exp+2).toFixed(1);
+  document.getElementById('val-winter').textContent='Esperado: '+lo+'–'+hi+' mmHg';
+  let t,c;
+  if(p>=(exp-2)&&p<=(exp+2)){t='pCO₂ medido ('+p+') dentro do esperado — compensação <strong>adequada</strong>.';c='var(--teal)';}
+  else if(p<(exp-2)){t='pCO₂ medido ('+p+') <strong>abaixo</strong> — alcalose respiratória associada (misto).';c='var(--amber)';}
+  else{t='pCO₂ medido ('+p+') <strong>acima</strong> — acidose respiratória associada (misto).';c='var(--coral)';}
+  document.getElementById('val-winter').style.color=c;
+  document.getElementById('interp-winter').innerHTML=t;
+  showCalcResult('winter',true);
+}
+function calcVPP(){
+  const mx=parseFloat(document.getElementById('ppmax').value);
+  const mn=parseFloat(document.getElementById('ppmin').value);
+  if(isNaN(mx)||isNaN(mn)||(mx+mn)<=0){showCalcResult('vpp',false);return;}
+  const v=(mx-mn)/((mx+mn)/2)*100;
+  document.getElementById('val-vpp').textContent=v.toFixed(1)+'% (VPP)';
+  let t,c;
+  if(v>13){t='&gt; 13% — Responsivo a volume';c='var(--red)';}
+  else if(v>=9){t='9–13% — Zona cinzenta — PLR com VTI antes de decidir';c='var(--amber)';}
+  else{t='&lt; 9% — Não responsivo a volume';c='var(--teal)';}
+  document.getElementById('val-vpp').style.color=c;
+  document.getElementById('interp-vpp').innerHTML=t;
+  showCalcResult('vpp',true);
+}
+
+// ============================================================
+// QUIZ VM (só inicia se existir #quiz-container)
 // ============================================================
 const questions=[
-  {
-    caso:'Paciente masculino, 68 anos, 175 cm, 95 kg. SDRA por pneumonia (P/F = 140). IOT realizada. Ventilador configurado: AC-VC, VC 570 mL, FR 18, PEEP 10, FiO₂ 0,8. Medida da Pplat: 34 cmH₂O.',
-    pergunta:'Qual é a conduta ventilatória mais adequada?',
-    opcoes:[
-      'Aumentar FR para 22 irpm para melhorar a oxigenação',
-      'Reduzir VC para 6 mL/kg PBW (PBW = 75 kg → 450 mL) e reavalie Pplat em 15 min',
-      'Aumentar PEEP para 14 cmH₂O conforme tabela ARDSnet',
-      'Trocar para AC-PC com pressão inspiratória de 20 cmH₂O'
-    ],
-    correta:1,
-    feedback:'O PBW para 175 cm/masc = 50 + 0,91×(175−152,4) = 70,6 kg. VC inicial = 70,6×6 = 424 mL. O VC de 570 mL é equivalente a ~8 mL/kg PBW — acima do alvo. Com Pplat 34 (>30 cmH₂O), a prioridade é reduzir o VC para 6 mL/kg PBW (~424 mL) e reavalie a Pplat. Aumentar PEEP com Pplat já elevada pioraria a driving pressure. O modo não é o problema aqui.'
-  },
-  {
-    caso:'Paciente asmático, 32 anos, IOT de emergência por broncoespasmo grave. Ventilador: AC-VC, VC 500 mL, FR 16, PEEP 5, fluxo 40 L/min. Após 10 min: PA 70/40 mmHg, FC 130 bpm, curva de fluxo com fluxo expiratório que não retorna a zero.',
-    pergunta:'Qual é a manobra diagnóstica e terapêutica mais imediata?',
-    opcoes:[
-      'Iniciar noradrenalina 0,1 mcg/kg/min para a hipotensão',
-      'Realizar pausa inspiratória para medir Pplat',
-      'Desconectar o circuito do tubo endotraqueal e permitir expiração passiva por 30–60 s',
-      'Reduzir PEEP de 5 para 0 cmH₂O'
-    ],
-    correta:2,
-    feedback:'A curva de fluxo com expiração que não retorna a zero é diagnóstica de auto-PEEP (PEEPi) por air trapping. Com hipotensão grave, o mecanismo é o mesmo do tamponamento: ↑ pressão intratorácica → ↓ retorno venoso → ↓ DC. A manobra imediata e potencialmente salvadora é desconectar o circuito — permite expiração passiva e alívio da hiperinsuflação dinâmica. UpToDate: "immediate disconnection... is a potentially life-saving maneuver." NÃO escalar DVA sem tentar isso primeiro.'
-  },
-  {
-    caso:'TCE grave (GCS 6), TC com herniação uncal iminente. Precisa de IOT emergencial. PA 85/50 mmHg (choque hemorrágico). Sem acesso a cetamina no momento.',
-    pergunta:'Qual indutor é mais adequado para RSI nessa situação?',
-    opcoes:[
-      'Propofol 1,5 mg/kg — reduz a PIC',
-      'Midazolam 0,2 mg/kg — início mais suave',
-      'Etomidato 0,15 mg/kg — neutro hemodinamicamente, preserva PPC',
-      'Aguardar cetamina antes de intubar'
-    ],
-    correta:2,
-    feedback:'Nesse cenário há conflito: TCE com herniação iminente (precisa proteger PIC) + hipotensão (precisa manter PPC). O propofol piora a hipotensão — contraindiciado. O midazolam também é hipotensor e tem onset lento. Aguardar é perigoso com herniação iminente. O etomidato em dose reduzida (0,15 mg/kg para choque) é o melhor indutor: neutro hemodinamicamente, preserva PPC, onset rápido. UpToDate: em TCE + hipotensão, "etomidate is the preferred induction agent."'
-  },
-  {
-    caso:'Paciente em VM há 72h por SDRA. RASS −3 sob propofol 40 mcg/kg/min. FiO₂ agora em 0,4, PEEP 8, SpO₂ 95%. Equipe questiona quando iniciar avaliação de desmame.',
-    pergunta:'Quais critérios esse paciente já atende para iniciar avaliação de desmame?',
-    opcoes:[
-      'Nenhum — SDRA contraindica desmame precoce',
-      'SpO₂ ≥90% com FiO₂ ≤0,4 e PEEP ≤8 — mas falta avaliar drive respiratório (RASS −3 impede SBT)',
-      'Todos os critérios — pode extubar imediatamente',
-      'Deve aguardar gasometria com PaO₂ >80 mmHg antes de qualquer avaliação'
-    ],
-    correta:1,
-    feedback:'O paciente atende aos critérios de oxigenação (SpO₂ 95% com FiO₂ 0,4 e PEEP 8) e causa em resolução. Porém, RASS −3 é sedação profunda demais para realizar SBT. O próximo passo é realizar SAT (Spontaneous Awakening Trial): suspender propofol e titular para RASS −1 a +1. Somente após SAT bem-sucedido realizar o SBT. Não há contraindicação de desmame em SDRA quando oxigenação está adequada — ao contrário, desmame precoce reduz VIDD.'
-  },
-  {
-    caso:'Paciente em PSV 12 cmH₂O / PEEP 5, RASS −1. FR mostrada no ventilador: 28 irpm. FR programada: 12 irpm. Curva de pressão mostra deflexões negativas na fase expiratória sem disparo do ventilador.',
-    pergunta:'Que tipo de dissincronia está presente e qual é a conduta inicial?',
-    opcoes:[
-      'Double triggering — reduzir sensibilidade de trigger',
-      'Flow starvation — aumentar fluxo inspiratório para 80 L/min',
-      'Trigger inefetivo — investigar auto-PEEP e reduzir threshold de trigger',
-      'Delayed cycling — reduzir threshold de ciclagem em PSV'
-    ],
-    correta:2,
-    feedback:'Deflexões negativas na fase expiratória sem disparo do ventilador = trigger inefetivo (missed trigger) — o esforço do paciente não é detectado. A diferença entre FR no display (28) e FR programada (12) mostra que há muitos esforços espontâneos. Causa mais comum: auto-PEEP (o paciente precisa "vencer" o PEEPi + threshold de trigger). Conduta: medir auto-PEEP (pausa expiratória), ↓ FR, ↑ fluxo inspiratório, PEEP extrínseco ≤80% PEEPi para equilibrar, e/ou reduzir threshold de trigger.'
-  }
+  {caso:'Paciente masculino, 68 anos, 175 cm, 95 kg. SDRA por pneumonia (P/F = 140). IOT realizada. Ventilador configurado: AC-VC, VC 570 mL, FR 18, PEEP 10, FiO₂ 0,8. Medida da Pplat: 34 cmH₂O.',pergunta:'Qual é a conduta ventilatória mais adequada?',opcoes:['Aumentar FR para 22 irpm para melhorar a oxigenação','Reduzir VC para 6 mL/kg PBW (PBW = 75 kg → 450 mL) e reavalie Pplat em 15 min','Aumentar PEEP para 14 cmH₂O conforme tabela ARDSnet','Trocar para AC-PC com pressão inspiratória de 20 cmH₂O'],correta:1,feedback:'O PBW para 175 cm/masc = 50 + 0,91×(175−152,4) = 70,6 kg. VC inicial = 70,6×6 = 424 mL. O VC de 570 mL é equivalente a ~8 mL/kg PBW — acima do alvo. Com Pplat 34 (>30 cmH₂O), a prioridade é reduzir o VC para 6 mL/kg PBW (~424 mL) e reavalie a Pplat. Aumentar PEEP com Pplat já elevada pioraria a driving pressure. O modo não é o problema aqui.'},
+  {caso:'Paciente asmático, 32 anos, IOT de emergência por broncoespasmo grave. Ventilador: AC-VC, VC 500 mL, FR 16, PEEP 5, fluxo 40 L/min. Após 10 min: PA 70/40 mmHg, FC 130 bpm, curva de fluxo com fluxo expiratório que não retorna a zero.',pergunta:'Qual é a manobra diagnóstica e terapêutica mais imediata?',opcoes:['Iniciar noradrenalina 0,1 mcg/kg/min para a hipotensão','Realizar pausa inspiratória para medir Pplat','Desconectar o circuito do tubo endotraqueal e permitir expiração passiva por 30–60 s','Reduzir PEEP de 5 para 0 cmH₂O'],correta:2,feedback:'A curva de fluxo com expiração que não retorna a zero é diagnóstica de auto-PEEP (PEEPi) por air trapping. Com hipotensão grave, o mecanismo é o mesmo do tamponamento: ↑ pressão intratorácica → ↓ retorno venoso → ↓ DC. A manobra imediata e potencialmente salvadora é desconectar o circuito — permite expiração passiva e alívio da hiperinsuflação dinâmica.'},
+  {caso:'TCE grave (GCS 6), TC com herniação uncal iminente. Precisa de IOT emergencial. PA 85/50 mmHg (choque hemorrágico). Sem acesso a cetamina no momento.',pergunta:'Qual indutor é mais adequado para RSI nessa situação?',opcoes:['Propofol 1,5 mg/kg — reduz a PIC','Midazolam 0,2 mg/kg — início mais suave','Etomidato 0,15 mg/kg — neutro hemodinamicamente, preserva PPC','Aguardar cetamina antes de intubar'],correta:2,feedback:'Nesse cenário há conflito: TCE com herniação iminente (precisa proteger PIC) + hipotensão (precisa manter PPC). O propofol piora a hipotensão — contraindicado. O midazolam também é hipotensor e tem onset lento. Aguardar é perigoso com herniação iminente. O etomidato em dose reduzida (0,15 mg/kg para choque) é o melhor indutor: neutro hemodinamicamente, preserva PPC, onset rápido.'},
+  {caso:'Paciente em VM há 72h por SDRA. RASS −3 sob propofol 40 mcg/kg/min. FiO₂ agora em 0,4, PEEP 8, SpO₂ 95%. Equipe questiona quando iniciar avaliação de desmame.',pergunta:'Quais critérios esse paciente já atende para iniciar avaliação de desmame?',opcoes:['Nenhum — SDRA contraindica desmame precoce','SpO₂ ≥90% com FiO₂ ≤0,4 e PEEP ≤8 — mas falta avaliar drive respiratório (RASS −3 impede SBT)','Todos os critérios — pode extubar imediatamente','Deve aguardar gasometria com PaO₂ >80 mmHg antes de qualquer avaliação'],correta:1,feedback:'O paciente atende aos critérios de oxigenação (SpO₂ 95% com FiO₂ 0,4 e PEEP 8) e causa em resolução. Porém, RASS −3 é sedação profunda demais para realizar SBT. O próximo passo é realizar SAT (Spontaneous Awakening Trial): suspender propofol e titular para RASS −1 a +1. Somente após SAT bem-sucedido realizar o SBT.'},
+  {caso:'Paciente em PSV 12 cmH₂O / PEEP 5, RASS −1. FR mostrada no ventilador: 28 irpm. FR programada: 12 irpm. Curva de pressão mostra deflexões negativas na fase expiratória sem disparo do ventilador.',pergunta:'Que tipo de dissincronia está presente e qual é a conduta inicial?',opcoes:['Double triggering — reduzir sensibilidade de trigger','Flow starvation — aumentar fluxo inspiratório para 80 L/min','Trigger inefetivo — investigar auto-PEEP e reduzir threshold de trigger','Delayed cycling — reduzir threshold de ciclagem em PSV'],correta:2,feedback:'Deflexões negativas na fase expiratória sem disparo do ventilador = trigger inefetivo (missed trigger) — o esforço do paciente não é detectado. A diferença entre FR no display (28) e FR programada (12) mostra que há muitos esforços espontâneos. Causa mais comum: auto-PEEP (o paciente precisa "vencer" o PEEPi + threshold de trigger).'}
 ];
 let currentQ=0,score=0,answered=false;
 function renderQuestion(){
@@ -382,14 +465,8 @@ function answer(idx){
     else if(i===idx&&idx!==q.correta)o.classList.add('wrong');
   });
   const fb=document.getElementById('quiz-feedback');
-  if(idx===q.correta){
-    score++;
-    fb.className='quiz-feedback correct show';
-    fb.innerHTML='<strong>✓ Correto!</strong> '+q.feedback;
-  }else{
-    fb.className='quiz-feedback wrong show';
-    fb.innerHTML='<strong>✗ Incorreto.</strong> '+q.feedback;
-  }
+  if(idx===q.correta){score++;fb.className='quiz-feedback correct show';fb.innerHTML='<strong>✓ Correto!</strong> '+q.feedback;}
+  else{fb.className='quiz-feedback wrong show';fb.innerHTML='<strong>✗ Incorreto.</strong> '+q.feedback;}
   const nextBtn=document.getElementById('quiz-next-btn');
   nextBtn.style.display='inline-block';
   nextBtn.textContent=currentQ<questions.length-1?'Próxima questão →':'Ver resultado';
@@ -400,9 +477,7 @@ function nextQuestion(){
     document.getElementById('quiz-question-screen').style.display='none';
     document.getElementById('quiz-score').classList.add('show');
     document.getElementById('score-num').textContent=score+'/'+questions.length;
-  }else{
-    renderQuestion();
-  }
+  }else{renderQuestion();}
 }
 function restartQuiz(){
   currentQ=0;score=0;answered=false;
@@ -416,7 +491,7 @@ function restartQuiz(){
 // ============================================================
 document.addEventListener('DOMContentLoaded',()=>{
   buildShell();
-  try{ if(localStorage.getItem('vmguide-plantao')==='1'){document.body.classList.add('plantao-mode');setPlantaoBtn(true);} }catch(e){}
+  try{if(localStorage.getItem('vmguide-plantao')==='1'){document.body.classList.add('plantao-mode');setPlantaoBtn(true);}}catch(e){}
   initProgress();
   initSearchKeys();
   if(document.getElementById('quiz-container'))renderQuestion();

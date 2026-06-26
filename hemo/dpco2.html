@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Δ pCO₂ — Hemo Guide</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-module="hemo" data-page="dpco2">
+<main class="main">
+  <p class="section-title">Δ pCO₂</p>
+  <p class="section-sub">Gradiente venoarterial de CO₂ — o marcador de fluxo que a SvcO₂ não captura</p>
+  
+  <div class="card">
+    <div class="card-title teal">Cálculo</div>
+    <div class="formula">Δ pCO<sub>2</sub><span class="op">=</span>pCO<sub>2 venosa central</sub><span class="op">−</span>pCO<sub>2 arterial</sub></div>
+    <div class="tag-row"><span class="tag">Normal: &lt; 6 mmHg</span><span class="tag">Baixo fluxo: ≥ 6 mmHg</span><span class="tag">Coletar simultaneamente</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Por que o CO₂ se acumula com baixo fluxo?</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">O CO₂ é o produto do metabolismo celular aeróbico. Com fluxo adequado, é carreado rapidamente. Com fluxo reduzido:</p>
+    <div class="flow">
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="border-color:var(--teal);color:var(--teal);">→</div><div class="flow-connector"></div></div><div class="flow-content"><div class="flow-title">CO₂ acumula nos tecidos</div><div class="flow-desc">Estase — menor lavagem do produto do metabolismo celular</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="border-color:var(--teal);color:var(--teal);">→</div><div class="flow-connector"></div></div><div class="flow-content"><div class="flow-title">pCO₂ venosa se eleva</div><div class="flow-desc">O sangue que retorna ao coração carrega mais CO₂ do que o normal</div></div></div>
+      <div class="flow-step"><div class="flow-line"><div class="flow-dot" style="border-color:var(--teal);color:var(--teal);">→</div></div><div class="flow-content"><div class="flow-title">Gradiente ≥ 6 mmHg</div><div class="flow-desc">Sinaliza baixo débito cardíaco ou disfunção microcirculatória</div></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title green">Vantagens sobre o lactato isolado</div>
+    <table>
+      <tr><th>Parâmetro</th><th>Limitação</th></tr>
+      <tr><td>Lactato</td><td>Pode estar elevado por causas não perfusionais (adrenalina, insuficiência hepática, metformina). Clearance lento — não rastreia mudanças rápidas.</td></tr>
+      <tr><td>Δ pCO₂</td><td>Marcador direto de fluxo. Normaliza rapidamente com melhora da perfusão. Detecta hipoperfusão mesmo com lactato normal.</td></tr>
+    </table>
+    <div class="alert-box info" style="margin-top:10px;"><div class="icon">i</div><div class="content">Os dois parâmetros se complementam: o lactato indica <em>se há</em> dívida de O₂; o Δ pCO₂ indica <em>se o fluxo</em> está adequado para quitar essa dívida.</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title amber">Surviving Sepsis Campaign 2026 — posição atual</div>
+    <div class="alert-box info" style="margin-bottom:12px;"><div class="icon">i</div><div class="content"><strong>Março de 2026</strong> — 129 recomendações, 46 novas. Publicado em Critical Care Medicine e Intensive Care Medicine. Endossado por 24 sociedades.</div></div>
+    <table>
+      <tr><th>Tema</th><th>Recomendação 2026</th><th>Força</th></tr>
+      <tr><td>Lactato</td><td>Medir em todos com sepse ou choque. Lactato seriado para guiar ressuscitação quando elevado.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+      <tr><td>Enchimento capilar</td><td>Utilizar como adjunto a outras medidas de perfusão para guiar ressuscitação.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+      <tr><td>Parâmetros dinâmicos</td><td><strong>Novo 2026:</strong> Preferir medidas dinâmicas (PLR, fluid challenge com SV/DC) em vez de exame físico ou medidas estáticas isoladas.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+      <tr><td>Monitoramento de DC</td><td>Evidência insuficiente para recomendar monitoramento minimamente invasivo além do cuidado habitual.</td><td><span class="pill pill-blue">Insuficiente</span></td></tr>
+      <tr><td>SvcO₂</td><td>Não é mais alvo primário mandatório em adultos. Mantém valor no monitoramento multimodal.</td><td><span class="pill pill-blue">Contexto</span></td></tr>
+      <tr><td>PAM — ≥ 65 anos</td><td><strong>Novo 2026:</strong> Alvo de PAM 60–65 mmHg para pacientes com 65 anos ou mais em choque séptico.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+      <tr><td>PAM — adultos gerais</td><td>Manter alvo inicial de PAM ≥ 65 mmHg com vasopressor.</td><td><span class="pill pill-green">Forte</span></td></tr>
+      <tr><td>Vasopressor periférico</td><td><strong>Novo 2026:</strong> Iniciar vasopressor por acesso periférico para restaurar PAM sem aguardar acesso central.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+      <tr><td>Cristaloide balanceado</td><td><strong>Novo 2026:</strong> Preferir Ringer lactato ou Hartmann a SF 0,9%.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+      <tr><td>Volume inicial</td><td>Pelo menos 30 mL/kg IV nas primeiras 3 horas, com reavaliação frequente para evitar sobrecarga.</td><td><span class="pill pill-amber">Condicional</span></td></tr>
+    </table>
+    <div class="alert-box warn" style="margin-top:12px;"><div class="icon">!</div><div class="content"><strong>Mensagem central do SSC 2026 para monitoramento</strong>Parâmetros dinâmicos (PLR com medida de SV/VTI, variação de pressão de pulso, Δ pCO₂) são superiores a medidas estáticas (PVC, diâmetro absoluto da VCI). O POCUS de VCI integra essa abordagem quando interpretado pelo índice de colapsibilidade ou distensibilidade.</div></div>
+  </div>
+</section>
+</main>
+<script src="../assets/app.js"></script>
+
+</body>
+</html>

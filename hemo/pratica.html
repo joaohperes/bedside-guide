@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casos Práticos — Hemo Guide</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-module="hemo" data-page="pratica">
+<main class="main">
+  <p class="section-title">Casos Práticos</p>
+  <p class="section-sub">8 cenários simulados — 2 por quadrante</p>
+  
+
+  <div class="alert-box info">
+    <div class="icon">i</div>
+    <div class="content"><strong>Como usar</strong>Leia a apresentação e os dados de cada caso. Tente identificar o quadrante (Q1–Q4) e o tipo de choque antes de clicar em "Ver análise". Os casos são fictícios — construídos para ilustrar padrões clínicos reais.</div>
+  </div>
+</main>
+<script src="../assets/app.js"></script>
+
+<script>
+function toggleCase(btn){
+  const reveal=btn.nextElementSibling;
+  const isOpen=reveal.classList.contains('open');
+  reveal.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.textContent=isOpen?'Ver análise':'Ocultar análise';
+}
+</script>
+</body>
+</html>

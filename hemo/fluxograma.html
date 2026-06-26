@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluxograma Integrado — Hemo Guide</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-module="hemo" data-page="fluxograma">
+<main class="main">
+  <p class="section-title">Fluxograma Integrado</p>
+  <p class="section-sub">Do choque à conduta — padrão, gasometria, POCUS, drogas · SSC 2026</p>
+  
+
+  <div class="fx">
+
+    <div class="fx-step entry">
+      <div class="fx-head"><span class="fx-num">·</span><span class="fx-title">Suspeita de choque</span></div>
+      <div class="fx-sub">PAM &lt; 65 mmHg · lactato elevado · enchimento capilar &gt; 3 s · oligúria · alteração de consciência · pele moteada. Iniciar o protocolo em paralelo a história e exame focado.</div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">1</span><span class="fx-title">Identificar o padrão hemodinâmico</span></div>
+      <div class="fx-sub">POCUS rápido + clínica direcionada. O padrão guia a primeira intervenção antes mesmo da gasometria pareada estar pronta.</div>
+      <div class="fx-grid cols-4">
+        <div class="fx-box red">
+          <div class="fx-box-title">Hipovolêmico</div>
+          <span class="fx-box-criteria">DC ↓ · RVS ↑ · PVC ↓</span>
+          <div class="fx-box-action">VCI colapsável · pele fria · sangramento/perdas</div>
+          <div class="fx-box-detail">Volume é a 1ª intervenção. Vasopressor é ponte enquanto repõe.</div>
+        </div>
+        <div class="fx-box coral">
+          <div class="fx-box-title">Distributivo</div>
+          <span class="fx-box-criteria">DC ↑ · RVS ↓ · PVC variável</span>
+          <div class="fx-box-action">Pele quente · PP alargada · sepse, anafilaxia, neurogênico</div>
+          <div class="fx-box-detail">Vasopressor precoce (Nora). Volume guiado por dinâmicos (PLR/VPP).</div>
+        </div>
+        <div class="fx-box amber">
+          <div class="fx-box-title">Cardiogênico</div>
+          <span class="fx-box-criteria">DC ↓ · RVS ↑ · PVC ↑</span>
+          <div class="fx-box-action">FE reduzida · linhas B difusas · IAM/miocardite/arritmia</div>
+          <div class="fx-box-detail">Nora se PAM &lt; 65, dobutamina se hipoperfusão persistente. Não dar volume cego.</div>
+        </div>
+        <div class="fx-box blue">
+          <div class="fx-box-title">Obstrutivo</div>
+          <span class="fx-box-criteria">DC ↓ · RVS ↑ · PVC ↑</span>
+          <div class="fx-box-action">VD dilatado · derrame pericárdico · ausência de sliding</div>
+          <div class="fx-box-detail">Tratar a causa: drenar tamponamento · trombolisar TEP · descomprimir pneumotórax.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">2</span><span class="fx-title">Gasometria pareada — coletar e calcular</span></div>
+      <div class="fx-sub">Arterial + venosa central simultaneamente (CVC, não periférica). Calcular dois parâmetros que se complementam: SvcO₂ (oferta vs. consumo) e Δ pCO₂ = pCO₂ venosa − pCO₂ arterial (fluxo tecidual).</div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">3</span><span class="fx-title">Interpretar pelos quadrantes SvcO₂ × Δ pCO₂</span></div>
+      <div class="fx-grid cols-4">
+        <div class="fx-box green">
+          <div class="fx-box-title">Q1 · Adequado</div>
+          <span class="fx-box-criteria">SvcO₂ ≥ 70% · Δ pCO₂ &lt; 6</span>
+          <div class="fx-box-action">Sem hipoperfusão global</div>
+          <div class="fx-box-detail">Manter monitoramento. Lactato seriado, PAM, diurese, enchimento capilar. Reavaliar em 2–4 h.</div>
+        </div>
+        <div class="fx-box amber">
+          <div class="fx-box-title">Q2 · Oferta</div>
+          <span class="fx-box-criteria">SvcO₂ &lt; 70% · Δ pCO₂ &lt; 6</span>
+          <div class="fx-box-action">Problema na oferta (DO₂)</div>
+          <div class="fx-box-detail">Avaliar Hb, SaO₂ e DC. Transfundir se Hb &lt; 7. Otimizar ventilação. Avaliar inotrópico.</div>
+        </div>
+        <div class="fx-box coral">
+          <div class="fx-box-title">Q3 · Falsa segurança</div>
+          <span class="fx-box-criteria">SvcO₂ ≥ 70% · Δ pCO₂ ≥ 6</span>
+          <div class="fx-box-action">Fluxo ruim, saturação normal</div>
+          <div class="fx-box-detail">Não confiar na SvcO₂. Considerar shunting microcirculatório, hipóxia citopática, foco infeccioso não controlado.</div>
+        </div>
+        <div class="fx-box red">
+          <div class="fx-box-title">Q4 · Baixo débito</div>
+          <span class="fx-box-criteria">SvcO₂ &lt; 70% · Δ pCO₂ ≥ 6</span>
+          <div class="fx-box-action">Choque confirmado</div>
+          <div class="fx-box-detail">Identificar mecanismo. Eco point-of-care urgente. Volume, vasopressor ou inotrópico conforme padrão.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">4</span><span class="fx-title">Avaliar a oferta de O₂ (DO₂) — onde intervir</span></div>
+      <div class="fx-sub">Especialmente útil em Q2 e Q4. DO₂ = DC × CaO₂ × 10. CaO₂ = (Hb × 1,34 × SaO₂) + (pO₂ × 0,003). Hemoglobina domina o transporte (~98%).</div>
+      <div class="fx-grid cols-3">
+        <div class="fx-box red">
+          <div class="fx-box-title">Hb baixa</div>
+          <div class="fx-box-action">Transfusão de hemácias</div>
+          <div class="fx-box-detail">Alvo Hb ≥ 7–8 g/dL em sepse · ≥ 8–10 em cardiopata.</div>
+        </div>
+        <div class="fx-box blue">
+          <div class="fx-box-title">SaO₂ baixa</div>
+          <div class="fx-box-action">O₂ suplementar · VNI · IOT</div>
+          <div class="fx-box-detail">Alvo SaO₂ ≥ 94%. Não cair em hiperóxia.</div>
+        </div>
+        <div class="fx-box amber">
+          <div class="fx-box-title">DC baixo</div>
+          <div class="fx-box-action">Volume · vasopressor · inotrópico</div>
+          <div class="fx-box-detail">IC ≥ 2,2 L/min/m². Próximo passo decide qual.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">5</span><span class="fx-title">POCUS VCI + dinâmicos — decidir sobre volume</span></div>
+      <div class="fx-sub">Use a fórmula correta para o modo ventilatório. Em arritmia, esforço respiratório ou janela ruim, prefira PLR com VTI ou VPP (intubado).</div>
+      <div class="fx-grid cols-3">
+        <div class="fx-box blue">
+          <div class="fx-box-title">VCI colapsável</div>
+          <span class="fx-box-criteria">&lt; 1,5 cm · cIVC &gt; 50% · dIVC &gt; 18%</span>
+          <div class="fx-box-action">Reposição volêmica</div>
+          <div class="fx-box-detail">Cristaloide balanceado (Ringer lactato preferencial) 250–500 mL. Reavaliar após cada bolus.</div>
+        </div>
+        <div class="fx-box amber">
+          <div class="fx-box-title">Zona cinzenta</div>
+          <span class="fx-box-criteria">VCI 1,5–2,1 cm · cIVC 20–50%</span>
+          <div class="fx-box-action">PLR + medir VTI</div>
+          <div class="fx-box-detail">Aumento &gt; 12–15% no VTI subvalvar → administrar volume. Sem resposta → vasopressor.</div>
+        </div>
+        <div class="fx-box red">
+          <div class="fx-box-title">VCI dilatada</div>
+          <span class="fx-box-criteria">&gt; 2,1 cm · colapso &lt; 20%</span>
+          <div class="fx-box-action">Não administrar volume</div>
+          <div class="fx-box-detail">Eco urgente. Avaliar VD, TEP, tamponamento. Vasopressor e/ou inotrópico.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">6</span><span class="fx-title">Iniciar e escalonar drogas vasoativas</span></div>
+      <div class="fx-sub">Alvo: PAM ≥ 65 mmHg (60–65 se ≥ 65 anos). SSC 2026: vasopressor pode ser iniciado em acesso periférico de bom calibre enquanto se obtém central.</div>
+      <div class="fx-grid cols-3">
+        <div class="fx-box coral">
+          <div class="fx-box-title">1ª droga</div>
+          <div class="fx-box-action">Noradrenalina 0,01–0,05 μg/kg/min</div>
+          <div class="fx-box-detail">Titular a cada 2–5 min. Acima de 0,25–0,5 μg/kg/min → considerar 2ª droga.</div>
+        </div>
+        <div class="fx-box purple">
+          <div class="fx-box-title">2ª droga</div>
+          <div class="fx-box-action">Vasopressina 0,03 U/min (fixa)</div>
+          <div class="fx-box-detail">Não titular. Permite reduzir Nora. Considerar hidrocortisona 200 mg/dia se vasopressor crescente &gt; 4 h.</div>
+        </div>
+        <div class="fx-box amber">
+          <div class="fx-box-title">Inotrópico se DC baixo</div>
+          <div class="fx-box-action">Dobutamina 2,5–5 μg/kg/min</div>
+          <div class="fx-box-detail">Adicionar se hipoperfusão persiste apesar de PAM em alvo (FE reduzida no eco).</div>
+        </div>
+      </div>
+      <a class="fx-ref" onclick="location.href='drogas.html'">Doses, diluições e escalonamento completo na aba Drogas</a>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">7</span><span class="fx-title">Reavaliação seriada após cada intervenção</span></div>
+      <div class="fx-sub">Conferir as 6 metas. Se atingidas, manter e iniciar desmame de vasopressor. Se não, reiniciar do passo 2.</div>
+      <div class="fx-grid cols-3">
+        <div class="fx-box"><div class="fx-box-action">Δ pCO₂ &lt; 6 mmHg</div></div>
+        <div class="fx-box"><div class="fx-box-action">SvcO₂ ≥ 70%</div></div>
+        <div class="fx-box"><div class="fx-box-action">Lactato em queda</div></div>
+        <div class="fx-box"><div class="fx-box-action">PAM em alvo</div></div>
+        <div class="fx-box"><div class="fx-box-action">Enchimento capilar &lt; 3 s</div></div>
+        <div class="fx-box"><div class="fx-box-action">Diurese ≥ 0,5 mL/kg/h</div></div>
+      </div>
+      <div class="fx-decision">
+        <div class="fx-box green">
+          <div class="fx-box-title">Metas atingidas</div>
+          <div class="fx-box-action">Ressuscitação completa</div>
+          <div class="fx-box-detail">Manter monitoramento. Iniciar desmame de vasopressor (Nora primeiro, vasopressina por último). Reduzir 0,02–0,05 μg/kg/min a cada 15–30 min se PAM estável.</div>
+        </div>
+        <div class="fx-box red">
+          <div class="fx-box-title">Metas não atingidas</div>
+          <div class="fx-box-action">Reiniciar avaliação</div>
+          <div class="fx-box-detail">Repetir gasometria pareada. POCUS, eco se necessário. Reconsiderar diagnóstico (foco infeccioso? complicação?). Escalonar drogas.</div>
+        </div>
+      </div>
+      <div class="fx-loop">↻ Em metas não atingidas, retorne ao passo 2 (gasometria + quadrantes) com nova interpretação</div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step">
+      <div class="fx-head"><span class="fx-num">!</span><span class="fx-title">Armadilhas e limitações</span></div>
+      <div class="fx-grid cols-3">
+        <div class="fx-box coral">
+          <div class="fx-box-title">SvcO₂ elevada</div>
+          <div class="fx-box-detail">Sepse hiperdinâmica · hipóxia citopática · coleta periférica · cateter mal posicionado · sedação profunda.</div>
+        </div>
+        <div class="fx-box amber">
+          <div class="fx-box-title">POCUS VCI</div>
+          <div class="fx-box-detail">Taquipneia → falso positivo · TEP/DPOC → VCI dilatada · PEEP alto distorce · arritmias dificultam · janela ruim → usar PLR.</div>
+        </div>
+        <div class="fx-box blue">
+          <div class="fx-box-title">SSC 2026 — destaques</div>
+          <div class="fx-box-detail">Parâmetros dinâmicos (PLR, VPP) &gt; estáticos · vasopressor periférico precoce · PAM 60–65 se ≥ 65 anos · cristaloide balanceado.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fx-arrow"></div>
+
+    <div class="fx-step golden">
+      <div class="fx-title">Regra de ouro</div>
+      <div class="fx-sub"><strong style="color:var(--text);">Padrão hemodinâmico</strong> diz que <em>tipo</em> de choque · <strong style="color:var(--text);">gasometria pareada</strong> diz <em>se há e quanto</em> de hipoperfusão · <strong style="color:var(--text);">DO₂</strong> diz <em>onde intervir</em> na oferta · <strong style="color:var(--text);">POCUS VCI + PLR</strong> diz <em>se responde a volume</em> · <strong style="color:var(--text);">drogas</strong> conforme padrão e escalonamento</div>
+    </div>
+
+  </div>
+
+</section>
+</main>
+<script src="../assets/app.js"></script>
+
+</body>
+</html>

@@ -80,11 +80,11 @@
             <stop offset="0%" stop-color="#1db88a" stop-opacity=".15"/>
             <stop offset="100%" stop-color="#1db88a" stop-opacity=".03"/>
           </linearGradient>
-          <marker id="arrowX" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,1.5 L7,4 L0,6.5 Z" fill="#4a5a72"/>
+          <marker id="arrowX" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#4a5a72"/>
           </marker>
-          <marker id="arrowY" markerWidth="8" markerHeight="8" refX="4" refY="1" orient="auto">
-            <path d="M1.5,7 L4,1 L6.5,7 Z" fill="#4a5a72"/>
+          <marker id="arrowY" markerWidth="9" markerHeight="9" refX="4.5" refY="0" orient="auto">
+            <path d="M0,9 L4.5,0 L9,9 Z" fill="#4a5a72"/>
           </marker>
           <clipPath id="plotClip">
             <rect x="52" y="32" width="464" height="276"/>
@@ -127,13 +127,11 @@
         <line x1="52"  y1="170" x2="516" y2="170" stroke="#2e3f52" stroke-width="1.3" stroke-dasharray="5 3"/>
 
         <!-- ── Axes ── -->
-        <!-- X axis at y=308, arrow at x=520 -->
-        <line x1="52" y1="308" x2="519" y2="308" stroke="#4a5a72" stroke-width="1.6" marker-end="url(#arrowX)"/>
-        <!-- Y axis at x=52, arrow at y=28 -->
-        <line x1="52" y1="308" x2="52" y2="29" stroke="#4a5a72" stroke-width="1.6" marker-end="url(#arrowY)"/>
+        <line x1="52" y1="308" x2="522" y2="308" stroke="#4a5a72" stroke-width="1.6" marker-end="url(#arrowX)"/>
+        <line x1="52" y1="308" x2="52"  y2="22"  stroke="#4a5a72" stroke-width="1.6" marker-end="url(#arrowY)"/>
 
         <!-- ── Y axis ticks + labels ── -->
-        <g font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#4d5e72" text-anchor="end">
+        <g font-family="'IBM Plex Mono',monospace" font-size="10" fill="#4d5e72" text-anchor="end">
           <line x1="52" y1="308" x2="46" y2="308" stroke="#4a5a72" stroke-width="1.2"/><text x="42" y="312">0</text>
           <line x1="52" y1="262" x2="46" y2="262" stroke="#4a5a72" stroke-width="1.2"/><text x="42" y="266">2</text>
           <line x1="52" y1="216" x2="46" y2="216" stroke="#4a5a72" stroke-width="1.2"/><text x="42" y="220">4</text>
@@ -143,10 +141,10 @@
           <line x1="52" y1="32"  x2="46" y2="32"  stroke="#4a5a72" stroke-width="1.2"/><text x="42" y="36">12</text>
         </g>
         <text transform="rotate(-90,13,170)" x="13" y="170" text-anchor="middle"
-              font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#4d5e72" letter-spacing=".05em">Δ pCO₂ (mmHg)</text>
+              font-family="'IBM Plex Mono',monospace" font-size="10" fill="#4d5e72" letter-spacing=".05em">Δ pCO₂ (mmHg)</text>
 
         <!-- ── X axis ticks + labels ── -->
-        <g font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#4d5e72" text-anchor="middle">
+        <g font-family="'IBM Plex Mono',monospace" font-size="10" fill="#4d5e72" text-anchor="middle">
           <line x1="52"  y1="308" x2="52"  y2="314" stroke="#4a5a72" stroke-width="1.2"/><text x="52"  y="327">40%</text>
           <line x1="129" y1="308" x2="129" y2="314" stroke="#4a5a72" stroke-width="1.2"/><text x="129" y="327">50%</text>
           <line x1="207" y1="308" x2="207" y2="314" stroke="#4a5a72" stroke-width="1.2"/><text x="207" y="327">60%</text>
@@ -156,10 +154,10 @@
           <line x1="516" y1="308" x2="516" y2="314" stroke="#4a5a72" stroke-width="1.2"/><text x="516" y="327">100%</text>
         </g>
         <text x="284" y="350" text-anchor="middle"
-              font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#4d5e72" letter-spacing=".05em">SvcO₂</text>
+              font-family="'IBM Plex Mono',monospace" font-size="10" fill="#4d5e72" letter-spacing=".05em">SvcO₂</text>
 
         <!-- ── Quadrant labels — centered, IBM Plex Sans ── -->
-        <g font-family="'IBM Plex Sans',sans-serif" clip-path="url(#plotClip)">
+        <g font-family="'IBM Plex Mono',monospace" clip-path="url(#plotClip)">
           <!-- Q4 center: x=168, y=101 -->
           <text x="168" y="72"  text-anchor="middle" font-size="8"  font-weight="700" fill="#d45050" letter-spacing=".1em" opacity=".9">Q4 — BAIXO DÉBITO</text>
           <text x="168" y="90"  text-anchor="middle" font-size="13" font-weight="600" fill="#dce2ea">Choque confirmado</text>
@@ -182,8 +180,8 @@
         </g>
 
         <!-- ── Threshold annotations ── -->
-        <text x="287" y="166" font-family="'IBM Plex Sans',sans-serif" font-size="8.5" fill="#2e3f52" font-style="italic">Δ pCO₂ = 6 mmHg</text>
-        <text x="287" y="305" font-family="'IBM Plex Sans',sans-serif" font-size="8.5" fill="#2e3f52" font-style="italic">SvcO₂ = 70%</text>
+        <text x="287" y="166" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#2e3f52" font-style="italic">Δ pCO₂ = 6 mmHg</text>
+        <text x="287" y="305" font-family="'IBM Plex Mono',monospace" font-size="8.5" fill="#2e3f52" font-style="italic">SvcO₂ = 70%</text>
 
       </svg>
     </div>

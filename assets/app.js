@@ -487,6 +487,140 @@ function restartQuiz(){
 }
 
 // ============================================================
+// GLOSSÁRIO — injetado automaticamente no rodapé de cada página
+// ============================================================
+const GLOSSARY = {
+  hemo: [
+    {cat:'Hemodinâmica e perfusão', terms:[
+      ['PAM','Pressão arterial média'],
+      ['PAS','Pressão arterial sistólica'],
+      ['PAD','Pressão arterial diastólica'],
+      ['PP','Pressão de pulso (PAS − PAD)'],
+      ['VPP','Variação de pressão de pulso'],
+      ['DC','Débito cardíaco (L/min)'],
+      ['IC','Índice cardíaco (DC/SC, L/min/m²)'],
+      ['VS / SV','Volume sistólico / Stroke volume'],
+      ['FE','Fração de ejeção'],
+      ['RVS','Resistência vascular sistêmica'],
+      ['PVC','Pressão venosa central'],
+      ['PAP','Pressão da artéria pulmonar'],
+    ]},
+    {cat:'Oxigenação e metabolismo', terms:[
+      ['SaO₂','Saturação arterial de O₂'],
+      ['SpO₂','Saturação periférica de O₂ (oxímetro)'],
+      ['SvO₂','Saturação venosa mista (Swan-Ganz)'],
+      ['SvcO₂','Saturação venosa central (CVC)'],
+      ['pCO₂','Pressão parcial de CO₂'],
+      ['Δ pCO₂','Gradiente venoarterial de CO₂'],
+      ['FiO₂','Fração inspirada de O₂'],
+      ['DO₂','Oferta de O₂ (mL O₂/min)'],
+      ['VO₂','Consumo de O₂ (mL O₂/min)'],
+      ['CaO₂','Conteúdo arterial de O₂'],
+      ['Hb','Hemoglobina (g/dL)'],
+      ['BE','Base excess (excesso de base)'],
+    ]},
+    {cat:'POCUS e monitorização', terms:[
+      ['POCUS','Point-of-care ultrasound'],
+      ['VCI','Veia cava inferior'],
+      ['cIVC','Índice de colapsibilidade da VCI (espontâneo)'],
+      ['dIVC','Índice de distensibilidade da VCI (VM)'],
+      ['VTI','Velocity-time integral (Doppler aórtico)'],
+      ['PLR','Passive leg raising'],
+      ['VD / VE','Ventrículo direito / esquerdo'],
+      ['RUSH','Rapid Ultrasound for Shock and Hypotension'],
+    ]},
+    {cat:'Clínica e farmacologia', terms:[
+      ['NA','Noradrenalina'],
+      ['CVC','Cateter venoso central'],
+      ['VM','Ventilação mecânica'],
+      ['IOT','Intubação orotraqueal'],
+      ['UTI','Unidade de terapia intensiva'],
+      ['TEP','Tromboembolismo pulmonar'],
+      ['IAM','Infarto agudo do miocárdio'],
+      ['ECMO','Extracorporeal membrane oxygenation'],
+      ['BIC','Bomba de infusão contínua'],
+      ['SSC','Surviving Sepsis Campaign'],
+    ]},
+  ],
+  vm: [
+    {cat:'Ventilação mecânica', terms:[
+      ['VM','Ventilação mecânica'],
+      ['VNI','Ventilação não invasiva'],
+      ['IOT','Intubação orotraqueal'],
+      ['Vt','Volume corrente'],
+      ['FR','Frequência respiratória'],
+      ['PEEP','Pressão positiva expiratória final'],
+      ['FiO₂','Fração inspirada de O₂'],
+      ['Pplat','Pressão de platô'],
+      ['Ppico','Pressão de pico inspiratória'],
+      ['DP','Driving pressure (Pplat − PEEP)'],
+      ['PBW','Peso corporal predito'],
+      ['VM/min','Volume-minuto'],
+    ]},
+    {cat:'Modos e ciclagem', terms:[
+      ['AC-VC','Assistido-controlado com volume controlado'],
+      ['AC-PC','Assistido-controlado com pressão controlada'],
+      ['PSV','Ventilação com suporte de pressão'],
+      ['SIMV','Ventilação mandatória intermitente sincronizada'],
+      ['CPAP','Pressão positiva contínua nas vias aéreas'],
+      ['IRRS','Índice de respiração rápida e superficial (f/Vt)'],
+      ['SAT','Spontaneous awakening trial'],
+      ['SBT','Spontaneous breathing trial'],
+    ]},
+    {cat:'Trocas gasosas', terms:[
+      ['PaO₂','Pressão parcial de O₂ arterial'],
+      ['PaCO₂','Pressão parcial de CO₂ arterial'],
+      ['SaO₂','Saturação arterial de O₂'],
+      ['SpO₂','Saturação periférica de O₂'],
+      ['P/F','Relação PaO₂/FiO₂'],
+      ['SDRA','Síndrome do desconforto respiratório agudo'],
+      ['PPC','Pressão de perfusão cerebral'],
+      ['PIC','Pressão intracraniana'],
+    ]},
+    {cat:'Farmacologia', terms:[
+      ['RSI','Sequência rápida de intubação'],
+      ['BNM','Bloqueador neuromuscular'],
+      ['NMB','Neuromuscular blockade'],
+      ['RASS','Richmond Agitation-Sedation Scale'],
+      ['CAM-ICU','Confusion Assessment Method for the ICU'],
+      ['IV','Intravenoso'],
+      ['BIC','Bomba de infusão contínua'],
+    ]},
+  ],
+};
+
+function buildGlossaryFooter(){
+  const mod=currentModule();
+  const glossary=GLOSSARY[mod];
+  if(!glossary)return;
+  const main=document.querySelector('main.main');
+  if(!main)return;
+
+  const footer=document.createElement('div');
+  footer.className='glossary-footer';
+  footer.innerHTML=
+    '<button class="glossary-toggle" onclick="this.parentElement.classList.toggle(\'open\')" aria-expanded="false">'+
+      '<span class="glossary-toggle-label">'+
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'+
+        'Glossário de siglas'+
+      '</span>'+
+      '<span class="glossary-toggle-arrow">▸</span>'+
+    '</button>'+
+    '<div class="glossary-body">'+
+      glossary.map(sec=>
+        '<div class="glossary-section">'+
+          '<div class="glossary-section-title">'+sec.cat+'</div>'+
+          '<dl class="glossary-dl">'+
+            sec.terms.map(([t,d])=>'<div><dt>'+t+'</dt><dd>'+d+'</dd></div>').join('')+
+          '</dl>'+
+        '</div>'
+      ).join('')+
+    '</div>';
+
+  main.appendChild(footer);
+}
+
+// ============================================================
 // BOOT
 // ============================================================
 document.addEventListener('DOMContentLoaded',()=>{
@@ -494,5 +628,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   try{if(localStorage.getItem('vmguide-plantao')==='1'){document.body.classList.add('plantao-mode');setPlantaoBtn(true);}}catch(e){}
   initProgress();
   initSearchKeys();
+  buildGlossaryFooter();
   if(document.getElementById('quiz-container'))renderQuestion();
 });

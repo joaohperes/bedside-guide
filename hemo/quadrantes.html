@@ -133,27 +133,38 @@
         </g>
         <text x="266" y="296" text-anchor="middle" font-size="8.5" fill="#304458" letter-spacing=".06em">SvcO₂</text>
 
-        <!-- labels dos quadrantes — pequenos, cor saturada, no canto superior -->
+        <!-- labels dos quadrantes — centralizados verticalmente em cada célula -->
+        <!--
+          Q4: célula x=48..266 y=10..136  → cx=157 cy=73
+          Q3: célula x=266..484 y=10..136 → cx=375 cy=73
+          Q2: célula x=48..266 y=136..262 → cx=157 cy=199
+          Q1: célula x=266..484 y=136..262→ cx=375 cy=199
+          Layout: tag (cy-28) · título (cy-10) · chip rect (cy+10) · chip text (cy+15)
+        -->
         <g clip-path="url(#pc)">
-          <!-- Q4 x=157, topo da célula -->
-          <text x="157" y="32"  text-anchor="middle" font-size="7"   fill="#dc3c3c" font-weight="700" letter-spacing=".1em" opacity=".9">Q4 — BAIXO DÉBITO</text>
-          <text x="157" y="48"  text-anchor="middle" font-size="11"  fill="#b8c4d4" font-weight="600">Choque confirmado</text>
-          <text x="157" y="62"  text-anchor="middle" font-size="7.5" fill="#2e4460">SvcO₂ &lt; 70% · Δ pCO₂ ≥ 6</text>
+          <!-- Q4  cy=73 -->
+          <text x="157" y="45"  text-anchor="middle" font-size="6.5" fill="#dc3c3c" font-weight="700" letter-spacing=".12em">Q4 — BAIXO DÉBITO</text>
+          <text x="157" y="61"  text-anchor="middle" font-size="10"  fill="#b8c4d4" font-weight="600">Choque confirmado</text>
+          <rect x="94" y="68" width="126" height="14" rx="4" fill="#dc3c3c" fill-opacity=".1" stroke="#dc3c3c" stroke-opacity=".25" stroke-width=".7"/>
+          <text x="157" y="78.5" text-anchor="middle" font-size="6.5" fill="#dc3c3c" fill-opacity=".85">SvcO₂ &lt; 70% · Δ pCO₂ ≥ 6</text>
 
-          <!-- Q3 x=375 -->
-          <text x="375" y="32"  text-anchor="middle" font-size="7"   fill="#e87828" font-weight="700" letter-spacing=".1em" opacity=".9">Q3 — FALSA SEGURANÇA</text>
-          <text x="375" y="48"  text-anchor="middle" font-size="11"  fill="#b8c4d4" font-weight="600">Cenário traiçoeiro</text>
-          <text x="375" y="62"  text-anchor="middle" font-size="7.5" fill="#2e4460">SvcO₂ ≥ 70% · Δ pCO₂ ≥ 6</text>
+          <!-- Q3  cy=73 -->
+          <text x="375" y="45"  text-anchor="middle" font-size="6.5" fill="#e87828" font-weight="700" letter-spacing=".12em">Q3 — FALSA SEGURANÇA</text>
+          <text x="375" y="61"  text-anchor="middle" font-size="10"  fill="#b8c4d4" font-weight="600">Cenário traiçoeiro</text>
+          <rect x="308" y="68" width="134" height="14" rx="4" fill="#e87828" fill-opacity=".08" stroke="#e87828" stroke-opacity=".22" stroke-width=".7"/>
+          <text x="375" y="78.5" text-anchor="middle" font-size="6.5" fill="#e87828" fill-opacity=".85">SvcO₂ ≥ 70% · Δ pCO₂ ≥ 6</text>
 
-          <!-- Q2 x=157 -->
-          <text x="157" y="156" text-anchor="middle" font-size="7"   fill="#d4a020" font-weight="700" letter-spacing=".1em" opacity=".9">Q2 — OFERTA</text>
-          <text x="157" y="172" text-anchor="middle" font-size="11"  fill="#b8c4d4" font-weight="600">Problema na oferta</text>
-          <text x="157" y="186" text-anchor="middle" font-size="7.5" fill="#2e4460">SvcO₂ &lt; 70% · Δ pCO₂ &lt; 6</text>
+          <!-- Q2  cy=199 -->
+          <text x="157" y="171" text-anchor="middle" font-size="6.5" fill="#d4a020" font-weight="700" letter-spacing=".12em">Q2 — OFERTA</text>
+          <text x="157" y="187" text-anchor="middle" font-size="10"  fill="#b8c4d4" font-weight="600">Problema na oferta</text>
+          <rect x="90" y="194" width="134" height="14" rx="4" fill="#d4a020" fill-opacity=".08" stroke="#d4a020" stroke-opacity=".22" stroke-width=".7"/>
+          <text x="157" y="204.5" text-anchor="middle" font-size="6.5" fill="#d4a020" fill-opacity=".85">SvcO₂ &lt; 70% · Δ pCO₂ &lt; 6</text>
 
-          <!-- Q1 x=375 -->
-          <text x="375" y="156" text-anchor="middle" font-size="7"   fill="#1db88a" font-weight="700" letter-spacing=".1em" opacity=".9">Q1 — ADEQUADO</text>
-          <text x="375" y="172" text-anchor="middle" font-size="11"  fill="#b8c4d4" font-weight="600">Ressuscitação ok</text>
-          <text x="375" y="186" text-anchor="middle" font-size="7.5" fill="#2e4460">SvcO₂ ≥ 70% · Δ pCO₂ &lt; 6</text>
+          <!-- Q1  cy=199 -->
+          <text x="375" y="171" text-anchor="middle" font-size="6.5" fill="#1db88a" font-weight="700" letter-spacing=".12em">Q1 — ADEQUADO</text>
+          <text x="375" y="187" text-anchor="middle" font-size="10"  fill="#b8c4d4" font-weight="600">Ressuscitação ok</text>
+          <rect x="308" y="194" width="134" height="14" rx="4" fill="#1db88a" fill-opacity=".08" stroke="#1db88a" stroke-opacity=".22" stroke-width=".7"/>
+          <text x="375" y="204.5" text-anchor="middle" font-size="6.5" fill="#1db88a" fill-opacity=".85">SvcO₂ ≥ 70% · Δ pCO₂ &lt; 6</text>
         </g>
 
         <!-- anotações threshold -->

@@ -260,7 +260,9 @@ body.plantao-mode .section{margin-bottom:40px;padding-top:36px}
 .pill-amber{background:rgba(240,160,48,.15);color:var(--amber);border:1px solid rgba(240,160,48,.3)}
 .pill-red{background:rgba(226,75,74,.15);color:var(--red);border:1px solid rgba(226,75,74,.3)}
 .pill-coral{background:rgba(232,88,64,.15);color:var(--coral);border:1px solid rgba(232,88,64,.3)}
-.pill-blue{background:rgba(29,184,138,.15);color:var(--teal);border:1px solid rgba(29,184,138,.3)}
+.pill-blue{background:rgba(96,165,250,.15);color:#60a5fa;border:1px solid rgba(96,165,250,.3)}
+.pill-gray{background:rgba(148,163,184,.1);color:#94a3b8;border:1px solid rgba(148,163,184,.25)}
+.pill[title]{cursor:help}
 .pill-purple{background:rgba(124,111,247,.15);color:var(--purple);border:1px solid rgba(124,111,247,.3)}
 /* Alert boxes */
 .alert-box{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;display:flex;gap:10px;align-items:flex-start}

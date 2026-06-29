@@ -40,14 +40,10 @@ body{
 /* ── logo ── */
 .logo{display:flex;align-items:center;gap:10px;margin-bottom:52px;text-decoration:none}
 .logo-icon{opacity:.9}
+.logo-icon rect:first-child{animation:bar-pulse 2.4s ease-in-out infinite}
+.logo-icon rect:last-child{animation:bar-pulse 2.4s ease-in-out infinite .6s}
+@keyframes bar-pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .logo-wordmark{font-family:var(--mono);font-size:17px;font-weight:500;letter-spacing:.14em;color:#fff;opacity:.92}
-.logo-pulse{width:7px;height:7px;border-radius:50%;background:var(--teal);position:relative}
-.logo-pulse::after{
-  content:'';position:absolute;inset:-3px;border-radius:50%;
-  border:1px solid var(--teal);opacity:.5;
-  animation:pulse 2.4s ease-out infinite;
-}
-@keyframes pulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.4);opacity:0}}
 
 /* ── headline ── */
 .headline{text-align:center;max-width:520px;margin-bottom:64px}
@@ -201,7 +197,6 @@ body{
       <rect x="10" y="0" width="6" height="15" rx="3" fill="#1db88a" opacity=".55"/>
     </svg>
     <span class="logo-wordmark">be·aside</span>
-    <span class="logo-pulse"></span>
   </a>
 
   <div class="headline">
